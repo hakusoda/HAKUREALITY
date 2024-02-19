@@ -1,0 +1,11 @@
+name: Head
+class: BallSocketConstraint
+properties:
+  Radius: 0.15000000596046448
+  TwistLowerAngle: -45.0
+  MaxFrictionTorque: 0.0
+  UpperAngle: 45.0
+  TwistUpperAngle: 45.0
+  LimitsEnabled: true
+  Restitution: 0.0
+  TwistLimitsEnabled: true

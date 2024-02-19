@@ -1,0 +1,23 @@
+name: TextLabel
+class: TextLabel
+properties:
+  TextWrap: true
+  TextXAlignment: Enum.TextXAlignment.Center
+  TextYAlignment: Enum.TextYAlignment.Center
+  TextTruncate: Enum.TextTruncate.None
+  FontSize: Enum.FontSize.Size14
+  TextWrapped: true
+  Font: Enum.Font.Gotham
+  MaxVisibleGraphemes: -1.0
+  FontFace: Font { Family = rbxasset://fonts/families/GothamSSm.json, Weight = Regular, Style = Normal }
+  TextSize: 14.0
+  TextColor: Institutional white
+  TextScaled: true
+  TextStrokeColor3: 0, 0, 0
+  TextColor3: 1, 1, 1
+  LineHeight: 1.0
+  TextTransparency: 0.0
+  RichText: true
+  Text: This experience may contain instances of flashing lights, which could induce epileptic seizures in a small amount of individuals.<br/><br/>If you experience any epileptic symptons while playing, IMMEDIATELY leave the experience and/or take off your headset.
+  TextDirection: Enum.TextDirection.Auto
+  TextStrokeTransparency: 1.0

@@ -1,0 +1,10 @@
+name: RightHand
+class: IKControl
+properties:
+  SmoothTime: 0.0
+  Enabled: true
+  EndEffectorOffset: 0, 0, 0, 1, 0, 0, 0, -4.37113883e-08, 1, 0, -1, -4.37113883e-08
+  Priority: 0.0
+  Weight: 1.0
+  Offset: 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1
+  Type: Enum.IKControlType.Transform

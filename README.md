@@ -1,2 +1,4 @@
 # HAKUREALITY
-coming to a github near you, whenever Roblox releases their "Luau File Sync" feature, as i'm not using anything else! ┐(￣ヮ￣)┌
+an experimental roblox virtual reality thingamabob, blah blah blah...
+
+this repository uses [VIE](https://github.com/hakusoda/VIE) for syncing between Roblox Studio.

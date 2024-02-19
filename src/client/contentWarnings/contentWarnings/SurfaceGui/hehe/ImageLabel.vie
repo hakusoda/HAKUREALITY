@@ -1,0 +1,13 @@
+name: ImageLabel
+class: ImageLabel
+properties:
+  ResampleMode: Enum.ResamplerMode.Default
+  SliceScale: 1.0
+  ImageRectOffset: 0, 0
+  ImageTransparency: 0.8999999761581421
+  ImageRectSize: 0, 0
+  TileSize: '{1, 0}, {1, 0}'
+  ImageColor3: 1, 1, 1
+  Image: rbxassetid://15689829157
+  ScaleType: Enum.ScaleType.Stretch
+  SliceCenter: 0, 0, 0, 0

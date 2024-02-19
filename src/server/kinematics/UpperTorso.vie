@@ -1,0 +1,11 @@
+name: UpperTorso
+class: BallSocketConstraint
+properties:
+  TwistUpperAngle: 15.0
+  Radius: 0.15000000596046448
+  MaxFrictionTorque: 0.0
+  TwistLowerAngle: -60.0
+  Restitution: 0.0
+  TwistLimitsEnabled: true
+  LimitsEnabled: true
+  UpperAngle: 15.0

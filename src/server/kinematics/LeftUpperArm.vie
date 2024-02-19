@@ -1,0 +1,11 @@
+name: LeftUpperArm
+class: BallSocketConstraint
+properties:
+  TwistLowerAngle: -90.0
+  Radius: 0.15000000596046448
+  MaxFrictionTorque: 0.0
+  Restitution: 0.0
+  TwistUpperAngle: 90.0
+  LimitsEnabled: true
+  TwistLimitsEnabled: false
+  UpperAngle: 90.0

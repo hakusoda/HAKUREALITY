@@ -1,0 +1,4 @@
+name: UICorner
+class: UICorner
+properties:
+  CornerRadius: 0.25, 0

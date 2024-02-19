@@ -1,0 +1,4 @@
+name: WireframeHandleAdornment
+class: WireframeHandleAdornment
+properties:
+  Scale: 1, 1, 1

@@ -1,0 +1,10 @@
+name: LeftFoot
+class: IKControl
+properties:
+  Enabled: true
+  Type: Enum.IKControlType.Transform
+  Weight: 1.0
+  SmoothTime: 0.0
+  Offset: 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1
+  Priority: 0.0
+  EndEffectorOffset: 0, -0.150000006, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1

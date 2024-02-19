@@ -1,0 +1,4 @@
+name: toolGui
+class: Part
+properties:
+  Shape: Enum.PartType.Block

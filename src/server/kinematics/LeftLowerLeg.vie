@@ -1,0 +1,17 @@
+name: LeftLowerLeg
+class: HingeConstraint
+properties:
+  ActuatorType: Enum.ActuatorType.None
+  Restitution: 0.0
+  SoftlockServoUponReachingTarget: false
+  Radius: 0.15000000596046448
+  LowerAngle: -90.0
+  MotorMaxAcceleration: 500000.0
+  TargetAngle: 0.0
+  UpperAngle: -15.0
+  AngularVelocity: 0.0
+  LimitsEnabled: true
+  AngularResponsiveness: 45.0
+  ServoMaxTorque: 0.0
+  AngularSpeed: 0.0
+  MotorMaxTorque: 0.0

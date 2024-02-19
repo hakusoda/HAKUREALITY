@@ -1,0 +1,4 @@
+name: hehe
+class: Frame
+properties:
+  Style: Enum.FrameStyle.Custom

@@ -1,0 +1,4 @@
+name: contentWarnings
+class: Part
+properties:
+  Shape: Enum.PartType.Block

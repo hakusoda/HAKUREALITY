@@ -1,0 +1,8 @@
+name: UIListLayout
+class: UIListLayout
+properties:
+  ItemLineAlignment: Enum.ItemLineAlignment.Automatic
+  Wraps: false
+  Padding: 0, 0
+  HorizontalFlex: Enum.UIFlexAlignment.None
+  VerticalFlex: Enum.UIFlexAlignment.None

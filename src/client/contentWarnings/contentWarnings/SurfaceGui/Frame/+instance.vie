@@ -1,0 +1,4 @@
+name: Frame
+class: Frame
+properties:
+  Style: Enum.FrameStyle.Custom

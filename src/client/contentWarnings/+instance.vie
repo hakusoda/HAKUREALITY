@@ -1,0 +1,6 @@
+name: contentWarnings
+class: Model
+properties:
+  WorldPivot: 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1
+  ModelStreamingMode: Enum.ModelStreamingMode.Persistent
+  LevelOfDetail: Enum.ModelLevelOfDetail.Disabled
