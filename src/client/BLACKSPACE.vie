@@ -1,7 +1,5 @@
 name: BLACKSPACE
 class: ColorCorrectionEffect
 properties:
-  Brightness: 0.0
-  TintColor: 0, 0, 0
   Saturation: -1.0
-  Contrast: 0.0
+  TintColor: 0, 0, 0

@@ -1,11 +1,5 @@
 name: RightUpperLeg
 class: BallSocketConstraint
 properties:
-  TwistLowerAngle: -45.0
-  TwistLimitsEnabled: true
   LimitsEnabled: true
-  Radius: 0.15000000596046448
-  UpperAngle: 45.0
-  MaxFrictionTorque: 0.0
-  Restitution: 0.0
-  TwistUpperAngle: 45.0
+  TwistLimitsEnabled: true

@@ -1,6 +1,5 @@
 name: BLACKSPACEwireframe
 class: Model
 properties:
-  WorldPivot: 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1
-  LevelOfDetail: Enum.ModelLevelOfDetail.Disabled
-  ModelStreamingMode: Enum.ModelStreamingMode.Persistent
+  LevelOfDetail: Disabled
+  ModelStreamingMode: Persistent

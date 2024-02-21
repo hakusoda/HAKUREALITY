@@ -1,11 +1,7 @@
 name: RightUpperArm
 class: BallSocketConstraint
 properties:
-  TwistLimitsEnabled: false
-  MaxFrictionTorque: 0.0
-  Radius: 0.15000000596046448
-  Restitution: 0.0
-  TwistUpperAngle: 90.0
-  UpperAngle: 90.0
-  LimitsEnabled: true
   TwistLowerAngle: -90.0
+  LimitsEnabled: true
+  UpperAngle: 90.0
+  TwistUpperAngle: 90.0

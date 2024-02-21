@@ -1,23 +1,15 @@
 name: TextButton
 class: TextButton
 properties:
-  TextXAlignment: Enum.TextXAlignment.Center
-  TextSize: 14.0
-  FontFace: Font { Family = rbxasset://fonts/families/GothamSSm.json, Weight = Medium, Style = Normal }
-  Text: Acknowledge
-  Font: Enum.Font.GothamMedium
-  LineHeight: 1.0
-  TextStrokeTransparency: 1.0
-  TextWrapped: true
-  TextYAlignment: Enum.TextYAlignment.Center
-  TextScaled: true
+  BackgroundColor3: 1, 1, 1
   TextColor3: 0, 0, 0
-  TextTransparency: 0.0
-  TextStrokeColor3: 0, 0, 0
-  TextTruncate: Enum.TextTruncate.None
-  TextWrap: true
-  RichText: false
-  MaxVisibleGraphemes: -1.0
-  TextColor: Really black
-  TextDirection: Enum.TextDirection.Auto
-  FontSize: Enum.FontSize.Size14
+  BorderColor3: 0, 0, 0
+  TextSize: 14.0
+  TextScaled: true
+  TextWrapped: true
+  AnchorPoint: 0.5, 0
+  Text: Acknowledge
+  Size: '{0.349999994, 0}, {0.100000001, 0}'
+  BorderSizePixel: 0.0
+  Position: '{0.5, 0}, {0.550000012, 0}'
+  FontFace: Font { Family = rbxasset://fonts/families/GothamSSm.json, Weight = Medium, Style = Normal }

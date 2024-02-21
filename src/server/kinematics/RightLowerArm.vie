@@ -1,17 +1,7 @@
 name: RightLowerArm
 class: HingeConstraint
 properties:
-  ActuatorType: Enum.ActuatorType.None
-  AngularResponsiveness: 45.0
-  Radius: 0.15000000596046448
-  UpperAngle: -180.0
-  LowerAngle: 0.0
-  Restitution: 0.0
-  MotorMaxAcceleration: 500000.0
-  AngularVelocity: 0.0
   LimitsEnabled: true
-  SoftlockServoUponReachingTarget: false
-  AngularSpeed: 0.0
-  ServoMaxTorque: 0.0
-  TargetAngle: 0.0
-  MotorMaxTorque: 0.0
+  LowerAngle: 0.0
+  Enabled: false
+  UpperAngle: -180.0

@@ -1,8 +1,7 @@
 name: UIListLayout
 class: UIListLayout
 properties:
-  ItemLineAlignment: Enum.ItemLineAlignment.Automatic
-  VerticalFlex: Enum.UIFlexAlignment.None
-  HorizontalFlex: Enum.UIFlexAlignment.None
-  Wraps: false
   Padding: 0.0250000004, 0
+  SortOrder: LayoutOrder
+  HorizontalAlignment: Center
+  FillDirection: Horizontal

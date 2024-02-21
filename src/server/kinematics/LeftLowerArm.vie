@@ -1,17 +1,7 @@
 name: LeftLowerArm
 class: HingeConstraint
 properties:
-  TargetAngle: 0.0
-  AngularResponsiveness: 45.0
-  MotorMaxAcceleration: 500000.0
-  Restitution: 0.0
+  Enabled: false
   UpperAngle: -180.0
-  AngularVelocity: 0.0
   LowerAngle: 0.0
-  ServoMaxTorque: 0.0
-  ActuatorType: Enum.ActuatorType.None
-  Radius: 0.15000000596046448
-  MotorMaxTorque: 0.0
-  AngularSpeed: 0.0
-  SoftlockServoUponReachingTarget: false
   LimitsEnabled: true

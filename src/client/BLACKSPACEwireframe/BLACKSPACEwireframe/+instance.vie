@@ -1,4 +1,7 @@
 name: BLACKSPACEwireframe
 class: Part
 properties:
-  Shape: Enum.PartType.Block
+  Anchored: true
+  BottomSurface: Smooth
+  TopSurface: Smooth
+  Transparency: 1.0

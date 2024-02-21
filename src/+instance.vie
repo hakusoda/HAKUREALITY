@@ -1,2 +1,4 @@
 name: HAKUREALITY
 class: Actor
+properties:
+  ModelStreamingMode: Persistent

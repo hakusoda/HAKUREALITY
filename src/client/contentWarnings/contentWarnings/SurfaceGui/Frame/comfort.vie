@@ -1,23 +1,16 @@
 name: comfort
 class: TextLabel
 properties:
-  TextTruncate: Enum.TextTruncate.None
-  TextScaled: true
-  FontSize: Enum.FontSize.Size14
-  FontFace: Font { Family = rbxasset://fonts/families/GothamSSm.json, Weight = Regular, Style = Normal }
-  TextStrokeTransparency: 1.0
-  TextXAlignment: Enum.TextXAlignment.Center
-  MaxVisibleGraphemes: -1.0
-  TextDirection: Enum.TextDirection.Auto
-  TextWrap: true
-  Font: Enum.Font.Gotham
-  TextStrokeColor3: 0, 0, 0
-  TextColor: Institutional white
-  TextSize: 14.0
+  AutomaticSize: X
   RichText: true
-  LineHeight: 1.0
-  TextYAlignment: Enum.TextYAlignment.Center
-  TextWrapped: true
+  Size: '{0, 0}, {1, 0}'
+  BorderSizePixel: 0.0
+  FontFace: Font { Family = rbxasset://fonts/families/GothamSSm.json, Weight = Regular, Style = Normal }
+  BackgroundColor3: 1, 1, 1
+  TextScaled: true
+  BackgroundTransparency: 1.0
   TextColor3: 1, 1, 1
   Text: 'Comfort: Unrated'
-  TextTransparency: 0.0
+  TextSize: 14.0
+  TextWrapped: true
+  BorderColor3: 0, 0, 0

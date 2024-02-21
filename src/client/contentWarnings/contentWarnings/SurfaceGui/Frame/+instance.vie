@@ -1,4 +1,10 @@
 name: Frame
 class: Frame
 properties:
-  Style: Enum.FrameStyle.Custom
+  BorderColor3: 0, 0, 0
+  BackgroundTransparency: 1.0
+  BackgroundColor3: 1, 1, 1
+  Position: '{0, 0}, {0.850000024, 0}'
+  Size: '{1, 0}, {0.0500000007, 0}'
+  BorderSizePixel: 0.0
+  AnchorPoint: 0, 1

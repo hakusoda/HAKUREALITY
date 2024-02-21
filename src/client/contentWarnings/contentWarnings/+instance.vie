@@ -1,4 +1,11 @@
 name: contentWarnings
 class: Part
 properties:
-  Shape: Enum.PartType.Block
+  Material: Neon
+  CastShadow: false
+  Transparency: 1.0
+  BottomSurface: Smooth
+  Anchored: true
+  CFrame: 0, -3, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1
+  TopSurface: Smooth
+  PivotOffset: 0, 3, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1

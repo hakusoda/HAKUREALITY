@@ -1,23 +1,15 @@
 name: title
 class: TextLabel
 properties:
-  TextScaled: true
-  TextYAlignment: Enum.TextYAlignment.Center
-  TextColor: Institutional white
-  RichText: true
-  Font: Enum.Font.GothamMedium
-  TextXAlignment: Enum.TextXAlignment.Center
-  TextColor3: 1, 1, 1
-  TextWrapped: true
-  MaxVisibleGraphemes: -1.0
-  TextStrokeTransparency: 1.0
-  TextStrokeColor3: 0, 0, 0
-  LineHeight: 1.0
-  TextTransparency: 0.0
-  FontFace: Font { Family = rbxasset://fonts/families/GothamSSm.json, Weight = Medium, Style = Normal }
-  TextWrap: true
-  Text: Photosensitivity Warning
-  TextTruncate: Enum.TextTruncate.None
-  TextDirection: Enum.TextDirection.Auto
+  BorderSizePixel: 0.0
+  BackgroundColor3: 1, 1, 1
+  BackgroundTransparency: 1.0
+  Size: '{1, 0}, {0.075000003, 0}'
   TextSize: 14.0
-  FontSize: Enum.FontSize.Size14
+  Text: Photosensitivity Warning
+  TextScaled: true
+  BorderColor3: 0, 0, 0
+  RichText: true
+  TextColor3: 1, 1, 1
+  FontFace: Font { Family = rbxasset://fonts/families/GothamSSm.json, Weight = Medium, Style = Normal }
+  TextWrapped: true

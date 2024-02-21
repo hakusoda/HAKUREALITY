@@ -1,13 +1,11 @@
 name: SurfaceGui
 class: SurfaceGui
 properties:
-  Brightness: 1.0
-  SizingMode: Enum.SurfaceGuiSizingMode.PixelsPerStud
-  CanvasSize: 800, 600
-  ZOffset: 0.0
-  MaxDistance: 16.0
-  PixelsPerStud: 256.0
-  ClipsDescendants: false
-  AlwaysOnTop: true
-  ToolPunchThroughDistance: 0.0
   LightInfluence: 1.0
+  ResetOnSpawn: false
+  Active: false
+  AlwaysOnTop: true
+  PixelsPerStud: 256.0
+  ZIndexBehavior: Sibling
+  MaxDistance: 16.0
+  SizingMode: PixelsPerStud

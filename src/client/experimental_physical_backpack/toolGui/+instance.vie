@@ -1,4 +1,14 @@
 name: toolGui
 class: Part
 properties:
-  Shape: Enum.PartType.Block
+  EnableFluidForces: false
+  CanCollide: false
+  Anchored: true
+  CanTouch: false
+  Material: Neon
+  CanQuery: false
+  Transparency: 1.0
+  BottomSurface: Smooth
+  TopSurface: Smooth
+  CFrame: 1, 10.0000048, -2.5, 1, 0, 0, 0, 1, 0, 0, 0, 1
+  CastShadow: false

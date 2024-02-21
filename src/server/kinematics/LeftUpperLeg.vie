@@ -1,11 +1,5 @@
 name: LeftUpperLeg
 class: BallSocketConstraint
 properties:
-  TwistLowerAngle: -45.0
-  TwistUpperAngle: 45.0
   TwistLimitsEnabled: true
-  Restitution: 0.0
-  Radius: 0.15000000596046448
   LimitsEnabled: true
-  UpperAngle: 45.0
-  MaxFrictionTorque: 0.0

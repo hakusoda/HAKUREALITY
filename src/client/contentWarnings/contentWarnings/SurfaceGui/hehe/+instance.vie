@@ -1,4 +1,10 @@
 name: hehe
 class: Frame
 properties:
-  Style: Enum.FrameStyle.Custom
+  BackgroundTransparency: 1.0
+  AnchorPoint: 0, 1
+  Size: '{1, 0}, {0.0500000007, 0}'
+  BackgroundColor3: 1, 1, 1
+  BorderColor3: 0, 0, 0
+  BorderSizePixel: 0.0
+  Position: '{0, 0}, {0.949999988, 0}'

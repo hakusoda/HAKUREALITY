@@ -1,23 +1,18 @@
 name: version
 class: TextLabel
 properties:
-  TextColor: Institutional white
-  TextSize: 14.0
-  FontSize: Enum.FontSize.Size14
   RichText: true
-  TextScaled: true
+  TextSize: 14.0
+  BackgroundColor3: 1, 1, 1
   TextTransparency: 0.8500000238418579
-  TextWrap: true
-  TextTruncate: Enum.TextTruncate.None
-  TextColor3: 1, 1, 1
-  Font: Enum.Font.GothamBold
-  TextStrokeColor3: 0, 0, 0
-  TextStrokeTransparency: 1.0
-  LineHeight: 1.0
-  FontFace: Font { Family = rbxasset://fonts/families/GothamSSm.json, Weight = Bold, Style = Normal }
-  MaxVisibleGraphemes: -1.0
   Text: HAKUREALITY — Version 143
+  TextColor3: 1, 1, 1
+  AnchorPoint: 0, 1
+  FontFace: Font { Family = rbxasset://fonts/families/GothamSSm.json, Weight = Bold, Style = Normal }
+  TextScaled: true
+  BorderSizePixel: 0.0
+  Size: '{1, 0}, {0.0199999996, 0}'
+  BackgroundTransparency: 1.0
   TextWrapped: true
-  TextDirection: Enum.TextDirection.Auto
-  TextYAlignment: Enum.TextYAlignment.Center
-  TextXAlignment: Enum.TextXAlignment.Center
+  BorderColor3: 0, 0, 0
+  Position: '{0, 0}, {1, 0}'
