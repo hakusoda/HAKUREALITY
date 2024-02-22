@@ -1,18 +1,40 @@
 name: version
 class: TextLabel
 properties:
-  RichText: true
-  TextSize: 14.0
-  BackgroundColor3: 1, 1, 1
-  TextTransparency: 0.8500000238418579
-  Text: HAKUREALITY — Version 143
-  TextColor3: 1, 1, 1
-  AnchorPoint: 0, 1
-  FontFace: Font { Family = rbxasset://fonts/families/GothamSSm.json, Weight = Bold, Style = Normal }
-  TextScaled: true
-  BorderSizePixel: 0.0
-  Size: '{1, 0}, {0.0199999996, 0}'
+  AnchorPoint: !Vector2
+    x: 0.0
+    y: 1.0
+  BackgroundColor3: !Color3
+    red: 255
+    green: 255
+    blue: 255
   BackgroundTransparency: 1.0
+  BorderColor3: !Color3
+    red: 0
+    green: 0
+    blue: 0
+  BorderSizePixel: 0
+  FontFace: !Font
+    style: Normal
+    family: rbxasset://fonts/families/GothamSSm.json
+    weight: Bold
+  Position: !UDim2
+  - scale: 0.0
+    offset: 0
+  - scale: 1.0
+    offset: 0
+  RichText: true
+  Size: !UDim2
+  - scale: 1.0
+    offset: 0
+  - scale: 0.019999999552965164
+    offset: 0
+  Text: HAKUREALITY — Version 143
+  TextColor3: !Color3
+    red: 255
+    green: 255
+    blue: 255
+  TextScaled: true
+  TextSize: 14.0
+  TextTransparency: 0.85
   TextWrapped: true
-  BorderColor3: 0, 0, 0
-  Position: '{0, 0}, {1, 0}'

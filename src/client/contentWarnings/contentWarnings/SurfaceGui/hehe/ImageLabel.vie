@@ -1,13 +1,29 @@
 name: ImageLabel
 class: ImageLabel
 properties:
-  Size: '{0.0500000007, 0}, {0.0500000007, 0}'
-  BorderSizePixel: 0.0
-  BackgroundColor3: 1, 1, 1
-  ImageTransparency: 0.8999999761581421
-  BorderColor3: 0, 0, 0
-  AnchorPoint: 0, 1
-  Image: rbxassetid://15689829157
+  AnchorPoint: !Vector2
+    x: 0.0
+    y: 1.0
+  BackgroundColor3: !Color3
+    red: 255
+    green: 255
+    blue: 255
   BackgroundTransparency: 1.0
+  BorderColor3: !Color3
+    red: 0
+    green: 0
+    blue: 0
+  BorderSizePixel: 0
+  Image: rbxassetid://15689829157
+  ImageTransparency: 0.9
+  Position: !UDim2
+  - scale: 0.05999999865889549
+    offset: 0
+  - scale: 1.0
+    offset: 0
+  Size: !UDim2
+  - scale: 0.05000000074505806
+    offset: 0
+  - scale: 0.05000000074505806
+    offset: 0
   SizeConstraint: RelativeXX
-  Position: '{0.0599999987, 0}, {1, 0}'

@@ -1,7 +1,9 @@
 name: UIListLayout
 class: UIListLayout
 properties:
-  Padding: 0.0250000004, 0
-  SortOrder: LayoutOrder
-  HorizontalAlignment: Center
   FillDirection: Horizontal
+  HorizontalAlignment: Center
+  Padding: !UDim
+    scale: 0.02500000037252903
+    offset: 0
+  SortOrder: LayoutOrder

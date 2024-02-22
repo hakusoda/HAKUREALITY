@@ -1,7 +1,10 @@
 name: LeftUpperArm
 class: BallSocketConstraint
 properties:
-  TwistLowerAngle: -90.0
   LimitsEnabled: true
-  UpperAngle: 90.0
+  TwistLowerAngle: -90.0
   TwistUpperAngle: 90.0
+  UpperAngle: 90.0
+attributes:
+  origin: UpperTorso
+  target: LeftShoulderRigAttachment

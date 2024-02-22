@@ -2,15 +2,31 @@ name: comfort
 class: TextLabel
 properties:
   AutomaticSize: X
-  RichText: true
-  Size: '{0, 0}, {1, 0}'
-  BorderSizePixel: 0.0
-  FontFace: Font { Family = rbxasset://fonts/families/GothamSSm.json, Weight = Regular, Style = Normal }
-  BackgroundColor3: 1, 1, 1
-  TextScaled: true
+  BackgroundColor3: !Color3
+    red: 255
+    green: 255
+    blue: 255
   BackgroundTransparency: 1.0
-  TextColor3: 1, 1, 1
+  BorderColor3: !Color3
+    red: 0
+    green: 0
+    blue: 0
+  BorderSizePixel: 0
+  FontFace: !Font
+    style: Normal
+    family: rbxasset://fonts/families/GothamSSm.json
+    weight: Regular
+  RichText: true
+  Size: !UDim2
+  - scale: 0.0
+    offset: 0
+  - scale: 1.0
+    offset: 0
   Text: 'Comfort: Unrated'
+  TextColor3: !Color3
+    red: 255
+    green: 255
+    blue: 255
+  TextScaled: true
   TextSize: 14.0
   TextWrapped: true
-  BorderColor3: 0, 0, 0

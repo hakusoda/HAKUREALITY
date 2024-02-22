@@ -1,11 +1,11 @@
 name: SurfaceGui
 class: SurfaceGui
 properties:
-  LightInfluence: 1.0
-  ResetOnSpawn: false
   Active: false
   AlwaysOnTop: true
-  PixelsPerStud: 256.0
-  ZIndexBehavior: Sibling
+  LightInfluence: 1.0
   MaxDistance: 16.0
+  PixelsPerStud: 256.0
+  ResetOnSpawn: false
   SizingMode: PixelsPerStud
+  ZIndexBehavior: Sibling

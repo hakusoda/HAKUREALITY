@@ -1,6 +1,9 @@
 name: RightLowerLeg
 class: HingeConstraint
 properties:
-  LowerAngle: -90.0
   LimitsEnabled: true
+  LowerAngle: -90.0
   UpperAngle: -15.0
+attributes:
+  origin: RightUpperLeg
+  target: RightKneeRigAttachment

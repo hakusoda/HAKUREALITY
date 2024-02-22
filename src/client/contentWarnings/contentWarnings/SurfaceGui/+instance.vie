@@ -1,11 +1,11 @@
 name: SurfaceGui
 class: SurfaceGui
 properties:
-  ZOffset: 1.0
-  ZIndexBehavior: Sibling
-  MaxDistance: 100000.0
-  SizingMode: PixelsPerStud
-  ResetOnSpawn: false
   AlwaysOnTop: true
   Face: Back
+  MaxDistance: 100000.0
   PixelsPerStud: 128.0
+  ResetOnSpawn: false
+  SizingMode: PixelsPerStud
+  ZIndexBehavior: Sibling
+  ZOffset: 1.0

@@ -3,3 +3,6 @@ class: BallSocketConstraint
 properties:
   LimitsEnabled: true
   TwistLimitsEnabled: true
+attributes:
+  origin: LowerTorso
+  target: RightHipRigAttachment

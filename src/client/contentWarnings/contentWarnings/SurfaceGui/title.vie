@@ -1,15 +1,31 @@
 name: title
 class: TextLabel
 properties:
-  BorderSizePixel: 0.0
-  BackgroundColor3: 1, 1, 1
+  BackgroundColor3: !Color3
+    red: 255
+    green: 255
+    blue: 255
   BackgroundTransparency: 1.0
-  Size: '{1, 0}, {0.075000003, 0}'
-  TextSize: 14.0
-  Text: Photosensitivity Warning
-  TextScaled: true
-  BorderColor3: 0, 0, 0
+  BorderColor3: !Color3
+    red: 0
+    green: 0
+    blue: 0
+  BorderSizePixel: 0
+  FontFace: !Font
+    style: Normal
+    family: rbxasset://fonts/families/GothamSSm.json
+    weight: Medium
   RichText: true
-  TextColor3: 1, 1, 1
-  FontFace: Font { Family = rbxasset://fonts/families/GothamSSm.json, Weight = Medium, Style = Normal }
+  Size: !UDim2
+  - scale: 1.0
+    offset: 0
+  - scale: 0.07500000298023224
+    offset: 0
+  Text: Photosensitivity Warning
+  TextColor3: !Color3
+    red: 255
+    green: 255
+    blue: 255
+  TextScaled: true
+  TextSize: 14.0
   TextWrapped: true

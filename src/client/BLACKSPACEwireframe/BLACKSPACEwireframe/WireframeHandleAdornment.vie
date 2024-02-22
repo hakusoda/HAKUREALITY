@@ -2,5 +2,8 @@ name: WireframeHandleAdornment
 class: WireframeHandleAdornment
 properties:
   AlwaysOnTop: true
-  Color3: 0.0784314, 0.0784314, 0.0784314
   CFrame: 0, -1024, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1
+  Color3: !Color3
+    red: 20
+    green: 20
+    blue: 20

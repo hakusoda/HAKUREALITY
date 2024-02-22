@@ -3,3 +3,6 @@ class: IKControl
 properties:
   EndEffectorOffset: 0, -0.150000006, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1
   SmoothTime: 0.0
+attributes:
+  offset: 0.5, -3, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1
+  start: RightUpperLeg

@@ -1,15 +1,37 @@
 name: TextButton
 class: TextButton
 properties:
-  BackgroundColor3: 1, 1, 1
-  TextColor3: 0, 0, 0
-  BorderColor3: 0, 0, 0
-  TextSize: 14.0
-  TextScaled: true
-  TextWrapped: true
-  AnchorPoint: 0.5, 0
+  AnchorPoint: !Vector2
+    x: 0.5
+    y: 0.0
+  BackgroundColor3: !Color3
+    red: 255
+    green: 255
+    blue: 255
+  BorderColor3: !Color3
+    red: 0
+    green: 0
+    blue: 0
+  BorderSizePixel: 0
+  FontFace: !Font
+    style: Normal
+    family: rbxasset://fonts/families/GothamSSm.json
+    weight: Medium
+  Position: !UDim2
+  - scale: 0.5
+    offset: 0
+  - scale: 0.550000011920929
+    offset: 0
+  Size: !UDim2
+  - scale: 0.3499999940395355
+    offset: 0
+  - scale: 0.10000000149011612
+    offset: 0
   Text: Acknowledge
-  Size: '{0.349999994, 0}, {0.100000001, 0}'
-  BorderSizePixel: 0.0
-  Position: '{0.5, 0}, {0.550000012, 0}'
-  FontFace: Font { Family = rbxasset://fonts/families/GothamSSm.json, Weight = Medium, Style = Normal }
+  TextColor3: !Color3
+    red: 0
+    green: 0
+    blue: 0
+  TextScaled: true
+  TextSize: 14.0
+  TextWrapped: true

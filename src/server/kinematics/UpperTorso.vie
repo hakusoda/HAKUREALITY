@@ -1,8 +1,11 @@
 name: UpperTorso
 class: BallSocketConstraint
 properties:
-  TwistLowerAngle: -60.0
   LimitsEnabled: true
   TwistLimitsEnabled: true
-  UpperAngle: 15.0
+  TwistLowerAngle: -60.0
   TwistUpperAngle: 15.0
+  UpperAngle: 15.0
+attributes:
+  origin: LowerTorso
+  target: WaistRigAttachment

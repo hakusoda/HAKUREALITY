@@ -1,11 +1,11 @@
 name: contentWarnings
 class: Part
 properties:
-  Material: Neon
-  CastShadow: false
-  Transparency: 1.0
-  BottomSurface: Smooth
   Anchored: true
+  BottomSurface: Smooth
   CFrame: 0, -3, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1
-  TopSurface: Smooth
+  CastShadow: false
+  Material: Neon
   PivotOffset: 0, 3, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1
+  TopSurface: Smooth
+  Transparency: 1.0

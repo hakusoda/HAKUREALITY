@@ -1,10 +1,26 @@
 name: Frame
 class: Frame
 properties:
-  BorderColor3: 0, 0, 0
+  AnchorPoint: !Vector2
+    x: 0.0
+    y: 1.0
+  BackgroundColor3: !Color3
+    red: 255
+    green: 255
+    blue: 255
   BackgroundTransparency: 1.0
-  BackgroundColor3: 1, 1, 1
-  Position: '{0, 0}, {0.850000024, 0}'
-  Size: '{1, 0}, {0.0500000007, 0}'
-  BorderSizePixel: 0.0
-  AnchorPoint: 0, 1
+  BorderColor3: !Color3
+    red: 0
+    green: 0
+    blue: 0
+  BorderSizePixel: 0
+  Position: !UDim2
+  - scale: 0.0
+    offset: 0
+  - scale: 0.8500000238418579
+    offset: 0
+  Size: !UDim2
+  - scale: 1.0
+    offset: 0
+  - scale: 0.05000000074505806
+    offset: 0

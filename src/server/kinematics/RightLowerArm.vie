@@ -1,7 +1,10 @@
 name: RightLowerArm
 class: HingeConstraint
 properties:
+  Enabled: false
   LimitsEnabled: true
   LowerAngle: 0.0
-  Enabled: false
   UpperAngle: -180.0
+attributes:
+  origin: RightUpperArm
+  target: RightElbowRigAttachment

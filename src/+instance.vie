@@ -2,3 +2,8 @@ name: HAKUREALITY
 class: Actor
 properties:
   ModelStreamingMode: Persistent
+attributes:
+  comfortRating: -1.0
+  recommendedQualityLevel: -1.0
+  replicationRate: 20.0
+  showPhotosensitivityWarning: false

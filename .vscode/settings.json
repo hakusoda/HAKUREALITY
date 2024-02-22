@@ -1,4 +1,5 @@
 {
+	"yaml.customTags": ["!Font mapping", "!UDim2 sequence", "!Color3 mapping", "!Vector3 mapping", "!Vector2 mapping"],
 	"files.associations": {
 		"*.vie": "yaml"
 	},

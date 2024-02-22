@@ -2,6 +2,9 @@ name: LeftLowerArm
 class: HingeConstraint
 properties:
   Enabled: false
-  UpperAngle: -180.0
-  LowerAngle: 0.0
   LimitsEnabled: true
+  LowerAngle: 0.0
+  UpperAngle: -180.0
+attributes:
+  origin: LeftUpperArm
+  target: LeftElbowRigAttachment

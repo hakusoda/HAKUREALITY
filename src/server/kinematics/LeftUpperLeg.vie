@@ -1,5 +1,8 @@
 name: LeftUpperLeg
 class: BallSocketConstraint
 properties:
-  TwistLimitsEnabled: true
   LimitsEnabled: true
+  TwistLimitsEnabled: true
+attributes:
+  origin: LowerTorso
+  target: LeftHipRigAttachment
