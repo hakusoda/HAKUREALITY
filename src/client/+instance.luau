@@ -326,7 +326,7 @@ if VRService.VREnabled then
 	task.defer(function()
 		-- TODO: improve
 		while task.wait(REPLICATION_RATE) do
-			if has_a_user_cframe_changed then
+			if not character.is_dead and has_a_user_cframe_changed then
 				local kinematics = character.kinematics
 				
 				local positions: { CFrame } = table.create(4)
