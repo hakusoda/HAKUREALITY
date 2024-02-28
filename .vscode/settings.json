@@ -4,5 +4,6 @@
 		"*.vie": "yaml"
 	},
 	"luau-lsp.types.roblox": true,
-	"luau-lsp.sourcemap.enabled": false
+	"luau-lsp.sourcemap.enabled": true,
+	"luau-lsp.sourcemap.autogenerate": false
 }
