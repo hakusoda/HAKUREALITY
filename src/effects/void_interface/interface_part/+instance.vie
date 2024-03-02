@@ -1,4 +1,4 @@
-name: contentWarnings
+name: interface_part
 class: Part
 properties:
   Anchored: true

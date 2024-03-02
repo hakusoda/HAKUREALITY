@@ -1,4 +1,4 @@
-name: Frame
+name: info
 class: Frame
 properties:
   AnchorPoint: !Vector2

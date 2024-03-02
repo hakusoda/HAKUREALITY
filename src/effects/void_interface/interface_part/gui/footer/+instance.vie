@@ -1,4 +1,4 @@
-name: hehe
+name: footer
 class: Frame
 properties:
   AnchorPoint: !Vector2

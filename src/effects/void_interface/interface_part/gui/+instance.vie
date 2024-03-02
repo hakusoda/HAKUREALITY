@@ -1,4 +1,4 @@
-name: SurfaceGui
+name: gui
 class: SurfaceGui
 properties:
   AlwaysOnTop: true

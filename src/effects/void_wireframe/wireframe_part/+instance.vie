@@ -1,4 +1,4 @@
-name: BLACKSPACEwireframe
+name: wireframe_part
 class: Part
 properties:
   Anchored: true

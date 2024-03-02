@@ -1,4 +1,4 @@
-name: contentWarnings
+name: void_interface
 class: Model
 properties:
   LevelOfDetail: Disabled

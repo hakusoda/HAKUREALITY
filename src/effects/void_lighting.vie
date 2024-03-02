@@ -1,4 +1,4 @@
-name: BLACKSPACE
+name: void_lighting
 class: ColorCorrectionEffect
 properties:
   Saturation: -1.0

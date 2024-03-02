@@ -1,4 +1,4 @@
-name: WireframeHandleAdornment
+name: wireframe
 class: WireframeHandleAdornment
 properties:
   AlwaysOnTop: true

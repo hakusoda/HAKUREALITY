@@ -1,4 +1,4 @@
-name: TextButton
+name: acknowledge
 class: TextButton
 properties:
   AnchorPoint: !Vector2

@@ -12,6 +12,7 @@ local root = script.Parent
 
 local sync = root.sync
 local events = root.events
+local effects = root.effects
 local package = root:FindFirstChild("PackageLink")
 local functions = root.functions
 local local_player = Players.LocalPlayer
@@ -23,7 +24,7 @@ local get_camera = require(functions.get_camera)
 local cleanup_instances = require(functions.cleanup_instances)
 local cleanup_connections = require(functions.cleanup_connections)
 local create_instance_group = require(functions.create_instance_group)
-local construct_floor_wireframe = require(functions.construct_floor_wireframe)
+local generate_void_wireframe = require(functions.generate_void_wireframe)
 local experimental_physical_backpack = require(script.experimental_physical_backpack)
 
 local REPLICATION_RATE = 1 / (root:GetAttribute("replicationRate") or 20)
@@ -119,10 +120,10 @@ if VRService.VREnabled then
 	local character = characters.wait_for_local_character()
 	
 	local blackspace_cframe = CFrame.new(0, 1000, 0)
-	local warning_group, blackspace, blackspace_wireframe, content_warnings = create_instance_group(
-		script.BLACKSPACE,
-		script.BLACKSPACEwireframe,
-		script.contentWarnings
+	local warning_group, void_lighting, void_wireframe, void_interface = create_instance_group(
+		effects.void_lighting,
+		effects.void_wireframe,
+		effects.void_interface
 	)
 	
 	local comfort_ratings = {
@@ -134,25 +135,27 @@ if VRService.VREnabled then
 	
 	local photo_sensitivity_warning_active = root:GetAttribute("showPhotosensitivityWarning") :: boolean
 	if photo_sensitivity_warning_active then
-		blackspace.Parent = Lighting
+		void_lighting.Parent = Lighting
 		
-		local wireframe = blackspace_wireframe.BLACKSPACEwireframe.WireframeHandleAdornment
-		construct_floor_wireframe(wireframe)
+		local wireframe = void_wireframe.wireframe_part.wireframe
+		generate_void_wireframe(wireframe)
 		
-		blackspace_wireframe.Parent = Terrain
+		void_wireframe.Parent = Terrain
 		
-		local gui = content_warnings.contentWarnings.SurfaceGui
-		gui.Frame.comfort.Text = `Comfort: {comfort_ratings[root:GetAttribute("comfortRating") or -1]}`
-		gui.version.Text = package and
+		local void_gui = void_interface.interface_part.gui
+		void_gui.info.comfort.Text = `Comfort: {comfort_ratings[root:GetAttribute("comfortRating") or -1]}`
+		void_gui.version.Text = package and
 			`HAKUREALITY — Version {package.VersionNumber}` or
 			"HAKUREALITY — Unknown Version"
-		gui.Parent = local_player.PlayerGui
+		void_gui.Parent = local_player.PlayerGui
 		
-		gui.TextButton.Activated:Once(function()
-			local info = TweenInfo.new(3, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut)
-			TweenService:Create(blackspace, info, { TintColor = Color3.new(1, 1, 1), Saturation = 0 }):Play()
+		void_gui.acknowledge.Activated:Once(function()
+			photo_sensitivity_warning_active = false
 			
-			for _,i in gui:GetDescendants() do
+			local info = TweenInfo.new(3, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut)
+			TweenService:Create(void_lighting, info, { TintColor = Color3.new(1, 1, 1), Saturation = 0 }):Play()
+			
+			for _,i in void_gui:GetDescendants() do
 				if i:IsA("GuiObject") then
 					TweenService:Create(i, info, {
 						Transparency = i:IsA("TextButton") and 1 or nil,
@@ -162,26 +165,25 @@ if VRService.VREnabled then
 				end
 			end
 			
-			photo_sensitivity_warning_active = false
 			task.spawn(function()
 				local a = 5 * info.Time
 				for i = 1, a do
 					-- we have to reconstruct the wireframe after changing the transparency, as it doesn't automatically update the current wireframe.
 					wireframe.Transparency = i / a
-					construct_floor_wireframe(wireframe)
+					generate_void_wireframe(wireframe)
 					task.wait(0.1)
 				end
 			end)
 			task.delay(info.Time, function()
 				warning_group.destroy_all()
-				blackspace, blackspace_wireframe, content_warnings = nil
+				void_lighting, void_wireframe, void_interface = nil
 			end)
 		end)
 		
-		content_warnings.Parent = Terrain
+		void_interface.Parent = Terrain
 	else
 		warning_group.destroy_all()
-		blackspace, blackspace_wireframe, content_warnings = nil
+		void_lighting, void_wireframe, void_interface = nil
 	end
 	
 	local local_rotation = 0
@@ -315,9 +317,12 @@ if VRService.VREnabled then
 			experimental_physical_backpack.render()
 		end
 		
-		if content_warnings then
-			content_warnings:PivotTo(CFrame.new(camera.CFrame.Position) - Vector3.zAxis * 24)
-			blackspace_wireframe:PivotTo(CFrame.new(camera.CFrame.Position))
+		if void_interface then
+			void_interface:PivotTo(CFrame.new(camera.CFrame.Position) - Vector3.zAxis * 24)
+		end
+		
+		if void_wireframe then
+			void_wireframe:PivotTo(CFrame.new(camera.CFrame.Position))
 		end
 	end)
 

@@ -1,4 +1,4 @@
-name: BLACKSPACEwireframe
+name: void_wireframe
 class: Model
 properties:
   LevelOfDetail: Disabled
