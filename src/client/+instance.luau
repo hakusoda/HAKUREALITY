@@ -152,6 +152,11 @@ if VRService.VREnabled then
 		void_gui.acknowledge.Activated:Once(function()
 			photo_sensitivity_warning_active = false
 			
+			local character_root_part = character.model.PrimaryPart
+			if character_root_part then
+				character_root_part.Anchored = false
+			end
+			
 			local info = TweenInfo.new(3, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut)
 			TweenService:Create(void_lighting, info, { TintColor = Color3.new(1, 1, 1), Saturation = 0 }):Play()
 			
@@ -195,7 +200,7 @@ if VRService.VREnabled then
 	local has_a_user_cframe_changed = false
 	RunService.PreSimulation:Connect(function(delta_time)
 		local is_dead = character.is_dead
-		if not experimental_physical_backpack.is_open and not is_dead then
+		if not experimental_physical_backpack.is_open and not is_dead and not photo_sensitivity_warning_active then
 			local rotate = 0
 			for _,input: InputObject in UserInputService:GetGamepadState(Enum.UserInputType.Gamepad1) do
 				if input.KeyCode == Enum.KeyCode.Thumbstick2 then
@@ -206,7 +211,7 @@ if VRService.VREnabled then
 			local_rotation -= math.pi * rotate * 1.5 * delta_time
 		end
 		
-		if not is_dead then
+		if not is_dead and not photo_sensitivity_warning_active then
 			-- TODO: store the primarypart in a field
 			local root = character.model.PrimaryPart
 			if root then
@@ -274,6 +279,11 @@ if VRService.VREnabled then
 			camera.Focus = pos
 			camera.CFrame = pos
 			camera.CameraType = Enum.CameraType.Scriptable
+			
+			local character_root_part = character.model.PrimaryPart
+			if character_root_part then
+				character_root_part.Anchored = true
+			end
 		else
 			local subject = camera.CameraSubject
 			if subject then
