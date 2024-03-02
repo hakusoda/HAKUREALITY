@@ -9,6 +9,7 @@ local functions = root.functions
 local kinematics = script.kinematics
 
 local constants = require(root.constants)
+local mark_instance = require(functions.mark_instance)
 local cleanup_instances = require(functions.cleanup_instances)
 
 local REPLICATION_RATE = 1 / (root:GetAttribute("replicationRate") or 20)
@@ -39,7 +40,7 @@ function setup_character(player: Player, model: Model)
 			else
 				target.CFrame = child:GetAttribute("offset") or CFrame.identity
 			end
-			target:SetAttribute("IS_HAKUREALITY_INSTANCE", true)
+			mark_instance(target)
 			target.Parent = root
 			
 			local clone = child:Clone()
@@ -48,7 +49,7 @@ function setup_character(player: Player, model: Model)
 			clone.ChainRoot = model:FindFirstChild(clone:GetAttribute("start"))
 			clone.EndEffector = model:FindFirstChild(clone.Name)
 			
-			clone:SetAttribute("IS_HAKUREALITY_INSTANCE", true)
+			mark_instance(clone)
 			clone.Parent = humanoid
 			
 			table.insert(instances, target)
@@ -63,7 +64,7 @@ function setup_character(player: Player, model: Model)
 				clone.Attachment0 = origin:FindFirstChild(target)
 				clone.Attachment1 = second:FindFirstChild(target)
 				
-				clone:SetAttribute("IS_HAKUREALITY_INSTANCE", true)
+				mark_instance(clone)
 				clone.Parent = origin
 				
 				table.insert(instances, clone)
