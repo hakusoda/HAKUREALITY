@@ -243,17 +243,17 @@ if VRService.VREnabled then
 		end
 		if kind == Enum.UserCFrame.Head then
 			-- rotate character with physical head, experimental.
-			local yaw = get_cframe_y_angle(value)
-			if not photo_sensitivity_warning_active and CFrame.Angles(0, yaw + head_rotation_offset_target, 0).LookVector:Dot(-Vector3.zAxis) < 0.75 then
-				local_rotation_turning_offset_target = yaw
-				head_rotation_offset_target = -yaw
+			local head_yaw = get_cframe_y_angle(value)
+			if not photo_sensitivity_warning_active and CFrame.Angles(0, head_yaw + head_rotation_offset_target, 0).LookVector:Dot(-Vector3.zAxis) < 0.75 then
+				local_rotation_turning_offset_target = head_yaw
+				head_rotation_offset_target = -head_yaw
 			end
 		end
 		character.cframes[kind.Value + 1] = value
 	end)
 	
-	function handle_user_input(input: InputObject, gameProcessed: boolean)
-		if not gameProcessed and (input.KeyCode == Enum.KeyCode.ButtonR3 or input.KeyCode == Enum.KeyCode.Minus) then
+	function handle_user_input(input: InputObject, game_processed: boolean)
+		if not game_processed and (input.KeyCode == Enum.KeyCode.ButtonR3 or input.KeyCode == Enum.KeyCode.Minus) then
 			if input.UserInputState == Enum.UserInputState.Begin then
 				experimental_physical_backpack.open()
 			elseif experimental_physical_backpack.is_open then

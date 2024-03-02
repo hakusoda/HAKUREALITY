@@ -123,7 +123,7 @@ Players.PlayerRemoving:Connect(function(player)
 	player_user_cframes[player] = nil
 end)
 
-local lastSendTime = 0
+local last_replication_time = 0
 events.OnServerEvent:Connect(function(player, event: number)
 	if event == 0 then
 		if not active_vr_players[player] then
@@ -135,16 +135,16 @@ events.OnServerEvent:Connect(function(player, event: number)
 	end
 end)
 
-sync.OnServerEvent:Connect(function(player, positions: { CFrame })
-	player_user_cframes[player] = positions
-	if os.clock() - lastSendTime > REPLICATION_RATE then
-		lastSendTime = os.clock()
+sync.OnServerEvent:Connect(function(player, user_cframes: { CFrame })
+	player_user_cframes[player] = user_cframes
+	if os.clock() - last_replication_time > REPLICATION_RATE then
+		last_replication_time = os.clock()
 
-		local positions = {}
+		local replication_items = {}
 		for player, values in player_user_cframes do
-			table.insert(positions, {player, values :: any})
+			table.insert(replication_items, { player, values :: any })
 		end
-		sync:FireAllClients(positions)
+		sync:FireAllClients(replication_items)
 	end
 end)
 
