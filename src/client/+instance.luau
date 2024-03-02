@@ -19,9 +19,11 @@ local local_player = Players.LocalPlayer
 
 local types = require(script.types)
 local constants = require(root.constants)
+local debug_gui = require(script.debug_gui)
 local characters = require(script.characters)
 local get_camera = require(functions.get_camera)
 local cleanup_instances = require(functions.cleanup_instances)
+local create_chat_command = require(functions.create_chat_command)
 local cleanup_connections = require(functions.cleanup_connections)
 local create_instance_group = require(functions.create_instance_group)
 local generate_void_wireframe = require(functions.generate_void_wireframe)
@@ -359,6 +361,10 @@ if VRService.VREnabled then
 	task.defer(StarterGui.SetCore, StarterGui, "VREnableControllerModels", false)
 	task.defer(RunService.UnbindFromRenderStep, RunService, "ControlScriptRenderstep")
 end
+
+create_chat_command("/hakudebug", function()
+	debug_gui.visible = not debug_gui.visible
+end)
 
 warn(`[HAKUREALITY]: fully initialised, yummy! currently on version {package and package.VersionNumber or "😓❓"}, was loaded from {root:GetAttribute("was_imported_via_loader") and "the require-based loader" or package and package.PackageId == "rbxassetid://15429676683" and "HAKUMI's public package" or "a third-party package, not maintained by HAKUMI" or "an unknown source, not maintained by HAKUMI"}.`)
 warn("[HAKUREALITY]: hello, console dweller, if you witness any \"flaws\" with players in virtual reality, pretty please report it directly to HAKUMI!")

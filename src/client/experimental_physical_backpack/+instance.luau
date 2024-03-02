@@ -8,10 +8,6 @@ local local_player = Players.LocalPlayer
 local get_camera = require(functions.get_camera)
 local get_point_on_plane = require(functions.get_point_on_plane)
 
-local module = {
-	is_open = false
-}
-
 local backpack_gui: {
 	part: Part,
 	test: Frame,
@@ -22,6 +18,11 @@ local backpack_gui: {
 	position: Vector3,
 	current_item: number?
 }?
+
+local module = {
+	is_open = false,
+	current_gui = backpack_gui
+}
 
 function module.open()
 	module.is_open = true
@@ -116,6 +117,7 @@ function module.open()
 		items = items,
 		position = VRService:GetUserCFrame(Enum.UserCFrame.RightHand).Position or -Vector3.zAxis * 4
 	}
+	module.current_gui = backpack_gui
 end
 
 function module.close()
@@ -133,7 +135,7 @@ function module.close()
 		end
 
 		backpack_gui.part:Destroy()
-		backpack_gui = nil
+		backpack_gui, module.current_gui = nil
 	end
 end
 

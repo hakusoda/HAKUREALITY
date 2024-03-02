@@ -226,7 +226,11 @@ function module.update_others(replication_alpha: number?)
 	end
 end
 
-function module.wait_for_local_character()
+function module.get_local_character(): types.Character?
+	return module.items[local_player]
+end
+
+function module.wait_for_local_character(): types.Character
 	local character = module.items[local_player]
 	if not character then
 		locally_created_event.Event:Wait()
