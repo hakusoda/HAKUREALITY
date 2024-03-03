@@ -18,8 +18,8 @@ local user_cframes = Enum.UserCFrame:GetEnumItems()
 local render_counter = create_fps_counter(RunService.PreRender)
 local initial_visibility = false
 
--- special thing for QSERF DevSite (temporary)
-if game.PlaceId == 4744058827 and VRService.VREnabled then
+local enabled_default = root:GetAttribute("enable_debug_default")
+if (enabled_default == "vr_only" and VRService.VREnabled) or enabled_default then
 	initial_visibility = true
 end
 

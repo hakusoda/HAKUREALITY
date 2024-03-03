@@ -4,6 +4,7 @@ properties:
   ModelStreamingMode: Persistent
 attributes:
   comfortRating: -1.0
+  enable_debug_default: false
   recommendedQualityLevel: -1.0
   replicationRate: 20.0
   showPhotosensitivityWarning: false
