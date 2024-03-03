@@ -2,17 +2,17 @@
 local Players = game:GetService("Players")
 
 local root = script.Parent
-local sync = root.sync
-local events = root.events
 local package = root:FindFirstChild("PackageLink")
 local functions = root.functions
 local kinematics = script.kinematics
+local active_event = root.active_event
+local cframe_replication = root.cframe_replication
 
 local constants = require(root.constants)
 local mark_instance = require(functions.mark_instance)
 local cleanup_instances = require(functions.cleanup_instances)
 
-local REPLICATION_RATE = 1 / (root:GetAttribute("replicationRate") or 20)
+local REPLICATION_RATE = 1 / constants.REPLICATION_RATE
 function get_head_scale(model: Model): number
 	local scale = model:FindFirstChild("HeadScale", true)
 	if scale and scale:IsA("NumberValue") then
@@ -108,7 +108,7 @@ function handle_player(player: Player)
 			if humanoid then
 				for _,child in humanoid:GetChildren() do
 					if child:IsA("IKControl") then
-						child.Enabled = not player:GetAttribute("disableInverseKinematics")
+						child.Enabled = not player:GetAttribute(constants.DISABLE_IK_ATTRIBUTE)
 					end
 				end
 			end
@@ -123,28 +123,28 @@ Players.PlayerRemoving:Connect(function(player)
 	player_user_cframes[player] = nil
 end)
 
-local last_replication_time = 0
-events.OnServerEvent:Connect(function(player, event: number)
-	if event == 0 then
-		if not active_vr_players[player] then
-			player:SetAttribute("isInVirtualReality", true)
-			
-			active_vr_players[player] = true
-			handle_player(player)
-		end
+active_event.OnServerEvent:Connect(function(player)
+	if not active_vr_players[player] then
+		player:SetAttribute("isInVirtualReality", true)
+		
+		active_vr_players[player] = true
+		handle_player(player)
 	end
 end)
 
-sync.OnServerEvent:Connect(function(player, user_cframes: { CFrame })
+local last_replication_at = 0
+cframe_replication.OnServerEvent:Connect(function(player, user_cframes: { CFrame })
 	player_user_cframes[player] = user_cframes
-	if os.clock() - last_replication_time > REPLICATION_RATE then
-		last_replication_time = os.clock()
+	
+	local current_time = os.clock()
+	if current_time - last_replication_at > REPLICATION_RATE then
+		last_replication_at = current_time
 
 		local replication_items = {}
 		for player, values in player_user_cframes do
 			table.insert(replication_items, { player, values :: any })
 		end
-		sync:FireAllClients(replication_items)
+		cframe_replication:FireAllClients(replication_items)
 	end
 end)
 

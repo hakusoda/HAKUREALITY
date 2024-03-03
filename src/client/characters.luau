@@ -225,7 +225,7 @@ function module.update(character: types.Character, replication_alpha: number?)
 	end
 end
 
--- local character is updated pre-render in client script
+-- local character is updated pre-render in local_handler
 function module.update_others(replication_alpha: number?)
 	for player, character in module.items do
 		if player ~= local_player then

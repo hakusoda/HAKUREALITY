@@ -3,8 +3,8 @@ class: Actor
 properties:
   ModelStreamingMode: Persistent
 attributes:
-  comfortRating: -1.0
+  comfort_rating: -1.0
   enable_debug_default: false
-  recommendedQualityLevel: -1.0
-  replicationRate: 20.0
-  showPhotosensitivityWarning: false
+  recommended_quality_level: -1.0
+  replication_rate: 20.0
+  show_photosensitivity_warning: false

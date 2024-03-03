@@ -1,2 +1,2 @@
-name: sync
+name: cframe_replication
 class: UnreliableRemoteEvent
