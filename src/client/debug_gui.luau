@@ -110,6 +110,10 @@ Iris:Connect(function()
 					Iris.Text({`current_item: {gui.current_item}`})
 				end
 			Iris.End()
+			Iris.Separator()
+			Iris.Tree({"a warning to those who trespass..."})
+				Iris.Cat()
+			Iris.End()
 		Iris.End()
 	end
 end)
