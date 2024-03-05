@@ -134,27 +134,23 @@ function module.create(player: Player, model: Model): types.Character?
 					}
 					character.kinematics[child.Name] = kinematic
 					
-					local connection: RBXScriptConnection?
 					local function handle_target(instance: Instance?)
 						if instance and instance:IsA("Attachment") then
 							kinematic.control_target = instance
 							kinematic.control_target_identity = child:GetAttribute("offset")
-							
-							if connection then
-								connection:Disconnect()
-								connection = nil
-								-- TODO: remove reference from connections table
-							end
+						else
+							kinematic.control_target, kinematic.control_target_identity = nil
 						end
 					end
 					
 					local target = child.Target
 					if target then
 						handle_target(target)
-					else
-						connection = child:GetPropertyChangedSignal("Target"):Connect(handle_target)
-						table.insert(connections, connection :: RBXScriptConnection)
 					end
+					
+					table.insert(connections, child:GetPropertyChangedSignal("Target"):Connect(function()
+						handle_target(child.Target)
+					end))
 				elseif child:IsA("Motor6D") and child.Name == "Root" then
 					character.waist_motor = child
 				elseif child:IsA("Attachment") then
