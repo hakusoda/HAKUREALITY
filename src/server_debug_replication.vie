@@ -1,0 +1,2 @@
+name: server_debug_replication
+class: UnreliableRemoteEvent

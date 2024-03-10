@@ -1,0 +1,36 @@
+name: label
+class: TextLabel
+properties:
+  AnchorPoint: !Vector2
+    x: 0.5
+    y: 0.5
+  AutomaticSize: X
+  BackgroundColor3: !Color3
+    red: 15
+    green: 15
+    blue: 15
+  BackgroundTransparency: 0.072
+  BorderColor3: !Color3
+    red: 160
+    green: 160
+    blue: 175
+  FontFace: !Font
+    style: Normal
+    family: rbxasset://fonts/families/Inconsolata.json
+    weight: Regular
+  Position: !UDim2
+  - scale: 0.5
+    offset: 0
+  - scale: 0.5
+    offset: 0
+  Size: !UDim2
+  - scale: 0.0
+    offset: 0
+  - scale: 0.0
+    offset: 32
+  Text: sending a request to the server...
+  TextColor3: !Color3
+    red: 255
+    green: 255
+    blue: 255
+  TextSize: 13.0

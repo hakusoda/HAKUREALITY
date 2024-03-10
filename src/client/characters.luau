@@ -7,7 +7,7 @@ local client = script.Parent
 local root = client.Parent
 local functions = root.functions
 local local_player = Players.LocalPlayer :: Player
-local locally_created_event = Instance.new("BindableEvent")
+local locally_created_event_threads: { thread } = {}
 
 local types = require(client.types)
 local constants = require(root.constants)
@@ -172,7 +172,9 @@ function module.create(player: Player, model: Model): types.Character?
 		end
 		module.items[player] = character
 
-		locally_created_event:Fire()
+		for _,thread in locally_created_event_threads do
+			task.defer(thread)
+		end
 		return character
 	end
 	return nil
@@ -235,10 +237,13 @@ function module.get_local_character(): types.Character?
 end
 
 function module.wait_for_local_character(): types.Character
-	local character = module.items[local_player]
+	local character = module.get_local_character()
 	if not character then
-		locally_created_event.Event:Wait()
-		return module.items[local_player]
+		local thread = coroutine.running()
+		table.insert(locally_created_event_threads, thread)
+		
+		coroutine.yield()
+		return assert(module.get_local_character())
 	end
 	
 	return character

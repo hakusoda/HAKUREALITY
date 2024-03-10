@@ -7,10 +7,13 @@ local functions = root.functions
 local kinematics = script.kinematics
 local active_event = root.active_event
 local cframe_replication = root.cframe_replication
+local server_debug_events = root.server_debug_events
+local server_debug_replication = root.server_debug_replication
 
 local constants = require(root.constants)
 local mark_instance = require(functions.mark_instance)
 local cleanup_instances = require(functions.cleanup_instances)
+local create_chat_command = require(functions.create_chat_command)
 
 local REPLICATION_RATE = 1 / constants.REPLICATION_RATE
 function get_head_scale(model: Model): number
@@ -20,6 +23,8 @@ function get_head_scale(model: Model): number
 	end
 	return 1
 end
+
+local players_with_debugger: { [Player]: boolean } = {}
 
 local all_kinematics = kinematics:GetChildren()
 local all_kinematics_length = #all_kinematics
@@ -119,8 +124,9 @@ end
 local active_vr_players: { [Player]: boolean } = {}
 local player_user_cframes: { [Player]: {CFrame} } = {}
 Players.PlayerRemoving:Connect(function(player)
-	active_vr_players[player] = nil
-	player_user_cframes[player] = nil
+	active_vr_players[player],
+		player_user_cframes[player],
+		players_with_debugger[player] = nil
 end)
 
 active_event.OnServerEvent:Connect(function(player)
@@ -147,5 +153,31 @@ cframe_replication.OnServerEvent:Connect(function(player, user_cframes: { CFrame
 		cframe_replication:FireAllClients(replication_items)
 	end
 end)
+
+local user_creator_id = game.CreatorType == Enum.CreatorType.User and game.CreatorId or nil
+server_debug_events.OnServerEvent:Connect(function(player, event: number)
+	if event == 0 then
+		local user_id = player.UserId
+		local has_debugger = players_with_debugger[player]
+		local condition = false--user_id == user_creator_id or user_id == 373020309
+		if condition then
+			players_with_debugger[player] = has_debugger and nil :: any or true
+		else
+			server_debug_events:FireClient(player, 0)
+		end
+	end
+end)
+
+create_chat_command("/hakudebug")
+create_chat_command("/hakudebugserver")
+
+--[[task.defer(function()
+	while task.wait(5) do
+		local new_buffer = buffer.create(0)
+		for player,_ in players_with_debugger do
+			server_debug_replication:FireClient(player, new_buffer)
+		end
+	end
+end)]]
 
 warn(`[HAKUREALITY]: greetings & salutations from version {package and package.VersionNumber or "😓❓"}!`)

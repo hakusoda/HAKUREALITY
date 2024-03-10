@@ -1,0 +1,7 @@
+name: notification_gui
+class: ScreenGui
+properties:
+  DisplayOrder: 256
+  ResetOnSpawn: false
+  ScreenInsets: DeviceSafeInsets
+  ZIndexBehavior: Sibling
