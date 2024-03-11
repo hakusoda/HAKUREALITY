@@ -2,7 +2,6 @@
 local Players = game:GetService("Players")
 
 local root = script.Parent
-local package = root:FindFirstChild("PackageLink")
 local functions = root.functions
 local kinematics = script.kinematics
 local active_event = root.active_event
@@ -198,4 +197,4 @@ create_chat_command("/hakudebugserver")
 	end
 end)]]
 
-warn(`[HAKUREALITY]: greetings & salutations from version {package and package.VersionNumber or "😓❓"}!`)
+warn(`[HAKUREALITY]: greetings & salutations from version {constants.VERSION} (r{constants.PACKAGE_VERSION})!`)

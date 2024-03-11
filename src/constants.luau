@@ -4,8 +4,10 @@ local package = root:FindFirstChildWhichIsA("PackageLink")
 
 local strict_default = require(root.functions.strict_default)
 return table.freeze({
+	VERSION = "0.1.0",
+	
 	PACKAGE = package,
-	VERSION = package and package.VersionNumber,
+	PACKAGE_VERSION = package and package.VersionNumber,
 	
 	SETUP_ATTRIBUTE = "HAKUREALITY_SETUP",
 	DISABLE_IK_ATTRIBUTE = "disableInverseKinematics",

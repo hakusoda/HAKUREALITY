@@ -17,7 +17,6 @@ local create_fps_counter = require(functions.create_fps_counter)
 local get_table_value_count = require(functions.get_table_value_count)
 local experimental_physical_backpack = require(client.experimental_physical_backpack)
 
-
 local user_cframes = Enum.UserCFrame:GetEnumItems()
 local render_counter = create_fps_counter(RunService.PreRender)
 local initial_visibility = false
@@ -34,8 +33,8 @@ local module = {
 local package = constants.PACKAGE
 local package_id = package and package.PackageId
 local local_player = assert(Players.LocalPlayer)
-local system_version = constants.VERSION
-local display_version = system_version and `v0.0.{system_version}` or "Unknown Version"
+local display_version = `v0.0.{constants.VERSION}`
+local package_version = constants.PACKAGE_VERSION
 function render_character(player: Player, character: types.Character)
 	local display_name = player.DisplayName
 	Iris.Tree({`{display_name}{player == local_player and " (You)" or ""}`})
@@ -73,7 +72,7 @@ Iris:Connect(function()
 		local is_backpack_open = experimental_physical_backpack.is_open
 		Iris.Window({`HAKUREALITY Debugger — {display_version}` :: any, nil, nil, nil, true})
 			Iris.Text({`FPS: {render_counter.value}`})
-			Iris.Text({`Package: {package_id} (v{system_version})`})
+			Iris.Text({`Package: {package_id} (r{package_version})`})
 			Iris.Text({`Debugger Renderer: Iris{Iris.Internal._version}`})
 			Iris.Separator()
 			Iris.Tree({"constants"})

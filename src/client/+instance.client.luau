@@ -9,7 +9,6 @@ local show_notification = require(functions.show_notification)
 local attach_chat_command_callback = require(functions.attach_chat_command_callback)
 
 local package = constants.PACKAGE
-local system_version = constants.VERSION
 require(script.local_handler)
 require(script.player_handler)
 
@@ -30,5 +29,5 @@ server_debug_events.OnClientEvent:Connect(function(event: number)
 	end
 end)
 
-warn(`[HAKUREALITY]: fully initialised, yummy! currently on version {system_version or "😓❓"}, was loaded from {root:GetAttribute("was_imported_via_loader") and "the require-based loader" or package and package.PackageId == "rbxassetid://15429676683" and "HAKUMI's public package" or "a third-party package, not maintained by HAKUMI" or "an unknown source, not maintained by HAKUMI"}.`)
+warn(`[HAKUREALITY]: fully initialised, yummy! currently on version {constants.VERSION} (r{constants.PACKAGE_VERSION}), was loaded from {root:GetAttribute("was_imported_via_loader") and "the require-based loader" or package and package.PackageId == "rbxassetid://15429676683" and "HAKUMI's public package" or "a third-party package, not maintained by HAKUMI" or "an unknown source, not maintained by HAKUMI"}.`)
 warn("[HAKUREALITY]: hello, console dweller, if you witness any \"flaws\" with players in virtual reality, pretty please report it directly to HAKUMI!")

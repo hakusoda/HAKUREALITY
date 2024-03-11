@@ -84,9 +84,7 @@ if module.active then
 
 			local void_gui = void_interface.interface_part.gui
 			void_gui.info.comfort.Text = `Comfort: {comfort_ratings[root:GetAttribute("comfortRating") or -1]}`
-			void_gui.version.Text = system_version and
-				`HAKUREALITY — Version {system_version}` or
-				"HAKUREALITY — Unknown Version"
+			void_gui.version.Text = `HAKUREALITY — Version {system_version}`
 			void_gui.Parent = local_player.PlayerGui
 
 			void_gui.acknowledge.Activated:Once(function()
