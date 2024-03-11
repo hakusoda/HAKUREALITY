@@ -144,11 +144,12 @@ if module.active then
 				local rotate = 0
 				for _,input: InputObject in UserInputService:GetGamepadState(Enum.UserInputType.Gamepad1) do
 					if input.KeyCode == Enum.KeyCode.Thumbstick2 then
-						rotate = input.Position.X
+						rotate = input.Position.X * 1.5
+						break
 					end
 				end
 
-				local_rotation -= math.pi * rotate * 1.5 * delta_time
+				local_rotation -= math.pi * (rotate * delta_time)
 				module.local_rotation = local_rotation
 			end
 
@@ -165,6 +166,7 @@ if module.active then
 						for _,input: InputObject in UserInputService:GetGamepadState(Enum.UserInputType.Gamepad1) do
 							if input.KeyCode == Enum.KeyCode.Thumbstick1 then
 								move_direction = input.Position
+								break
 							end
 						end
 
