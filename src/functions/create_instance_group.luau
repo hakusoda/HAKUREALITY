@@ -1,4 +1,4 @@
---!strict
+--!nocheck
 type InstanceGroup = {
 	destroy_all: () -> ()
 }

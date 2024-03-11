@@ -33,8 +33,7 @@ function module.create(player: Player, model: Model): types.Character?
 			is_dead = false,
 			cframes = table.create(4),
 			kinematics = {},
-			connections = {},
-			last_cframes = table.create(4)
+			connections = {}
 		}
 		local connections = character.connections
 		if character.model ~= model or not existing then
@@ -42,7 +41,6 @@ function module.create(player: Player, model: Model): types.Character?
 				character.is_dead = false
 				
 				table.clear(character.cframes)
-				table.clear(character.last_cframes)
 				cleanup_instances(character.kinematics)
 				cleanup_connections(connections)
 
@@ -114,7 +112,6 @@ function module.create(player: Player, model: Model): types.Character?
 						child.Died:Once(function()
 							character.is_dead = true
 							table.clear(character.cframes)
-							table.clear(character.last_cframes)
 							cleanup_instances(character.kinematics, true)
 							cleanup_connections(connections)
 							
@@ -129,6 +126,10 @@ function module.create(player: Player, model: Model): types.Character?
 						end)
 					end
 				elseif child:IsA("IKControl") then
+					if player_is_self then
+						child.SmoothTime = 0
+					end
+					
 					local kinematic: types.CharacterKinematic = {
 						control = child
 					}
@@ -181,22 +182,22 @@ function module.create(player: Player, model: Model): types.Character?
 end
 
 local user_cframes = Enum.UserCFrame:GetEnumItems()
-function module.update(character: types.Character, replication_alpha: number?)
+function module.update(character: types.Character)
 	for _,kind in user_cframes do
 		local index = kind.Value + 1
 		local kinematic = character.kinematics[kind.Name]
-		local prev_cframe = character.last_cframes[index]
-		local raw_cframe = character.cframes[index]
-		if raw_cframe then
-			local final_cframe = prev_cframe and prev_cframe:Lerp(raw_cframe, replication_alpha or 1) or raw_cframe
+		local cframe = character.cframes[index]
+		
+		-- we do a comparison check here to make sure the cframe doesn't contain invalid values
+		if cframe and cframe == cframe then
 			if kinematic then
 				local control_target = kinematic.control_target
 				if control_target then
 					local control_target_identity = kinematic.control_target_identity
 					if control_target_identity then
-						control_target.CFrame = control_target_identity * final_cframe
+						control_target.CFrame = control_target_identity * cframe
 					else
-						control_target.CFrame = final_cframe
+						control_target.CFrame = cframe
 					end
 				end
 			end
@@ -204,13 +205,13 @@ function module.update(character: types.Character, replication_alpha: number?)
 				-- adjusts ground height to account for head position on the Y axis
 				local waist = character.waist_motor
 				if waist then
-					waist.C0 = CFrame.new(0, math.clamp(final_cframe.Y, -0.75, 0) - 1, 0)
+					waist.C0 = CFrame.new(0, math.clamp(cframe.Y, -0.75, 0) - 1, 0)
 				end
 				
 				-- bends legs into an L shape if the user is physically crouching
 				local left_foot, right_foot = character.left_foot, character.right_foot
 				if left_foot or right_foot then
-					local alpha = 1 - (math.clamp(final_cframe.Y, -0.75, -0.65) + 0.75) / 0.1
+					local alpha = 1 - (math.clamp(cframe.Y, -0.75, -0.65) + 0.75) / 0.1
 					if left_foot then
 						left_foot.CFrame = CFrame.new(-0.5, -3, 0):Lerp(CFrame.new(-0.5, -2.5, 0.75) * CFrame.Angles(-math.pi / 2, 0, 0), alpha)
 					end
@@ -224,10 +225,10 @@ function module.update(character: types.Character, replication_alpha: number?)
 end
 
 -- local character is updated pre-render in local_handler
-function module.update_others(replication_alpha: number?)
+function module.update_others()
 	for player, character in module.items do
 		if player ~= local_player then
-			module.update(character, replication_alpha)
+			module.update(character)
 		end
 	end
 end

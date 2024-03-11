@@ -19,8 +19,10 @@ local types = require(client.types)
 local constants = require(root.constants)
 local characters = require(client.characters)
 local get_camera = require(functions.get_camera)
+local show_notification = require(functions.show_notification)
 local get_cframe_y_angle = require(functions.get_cframe_y_angle)
 local create_instance_group = require(functions.create_instance_group)
+local write_cframe_to_buffer = require(functions.write_cframe_to_buffer)
 local generate_void_wireframe = require(functions.generate_void_wireframe)
 local experimental_physical_backpack = require(client.experimental_physical_backpack)
 
@@ -265,7 +267,7 @@ if module.active then
 
 						last_body_rotation = body_rotation
 
-						characters.update(character, 1)
+						characters.update(character)
 					end
 				end
 
@@ -286,19 +288,41 @@ if module.active then
 			-- TODO: improve
 			local REPLICATION_RATE = 1 / constants.REPLICATION_RATE
 			while task.wait(REPLICATION_RATE) do
-				if not character.is_dead and has_a_user_cframe_changed then
+				if not character.is_dead and has_a_user_cframe_changed and #Players:GetPlayers() > 1 then
 					has_a_user_cframe_changed, module.has_a_user_cframe_changed = false, false
 					
 					local kinematics = character.kinematics
 
-					local positions: { CFrame } = table.create(4)
+					local positions: { buffer } = table.create(4)
 					for _,kind in user_cframe_enum_items do
 						if kinematics[kind.Name] then
-							positions[kind.Value + 1] = VRService:GetUserCFrame(kind)
+							local new_buffer = buffer.create(19)
+							write_cframe_to_buffer(new_buffer, 0, VRService:GetUserCFrame(kind))
+							
+							positions[kind.Value + 1] = new_buffer
 						end
 					end
 
 					cframe_replication:FireServer(positions)
+				end
+			end
+		end)
+		
+		task.defer(function()
+			while task.wait(5) do
+				local not_tracking = {}
+				for _,kind in user_cframe_enum_items do
+					if kind ~= Enum.UserCFrame.Floor then
+						local cframe = character.cframes[kind.Value + 1]
+						if not cframe or cframe == CFrame.identity then
+							table.insert(not_tracking, kind.Name)
+						end
+					end
+				end
+				
+				local not_tracking_amount = #not_tracking
+				if not_tracking_amount > 0 then
+					show_notification(`oh noes! your {table.concat(not_tracking, ", ")} {not_tracking_amount > 1 and "aren" or "isn"}'t tracking!`)
 				end
 			end
 		end)

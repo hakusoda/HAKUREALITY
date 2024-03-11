@@ -11,15 +11,13 @@ local constants = require(root.constants)
 local characters = require(client.characters)
 local cleanup_instances = require(functions.cleanup_instances)
 local cleanup_connections = require(functions.cleanup_connections)
+local read_cframe_from_buffer = require(functions.read_cframe_from_buffer)
 
 local module = { last_replicated_at = 0 }
 
 local local_player = Players.LocalPlayer
-local last_replicated_at = 0
 RunService.PreAnimation:Connect(function()
-	-- TODO: improve position lerping
-	local alpha = math.min(os.clock() - last_replicated_at, 0.1) / 0.1
-	characters.update_others(alpha)
+	characters.update_others()
 end)
 
 function handle_character(player: Player, model: Model)
@@ -49,7 +47,6 @@ Players.PlayerRemoving:Connect(function(player)
 	local character = characters.items[player]
 	if character then
 		table.clear(character.cframes)
-		table.clear(character.last_cframes)
 		cleanup_instances(character.kinematics, true)
 		cleanup_connections(character.connections)
 
@@ -63,20 +60,18 @@ Players.PlayerRemoving:Connect(function(player)
 end)
 
 cframe_replication.OnClientEvent:Connect(function(positions: {{any}})
-	last_replicated_at = os.clock()
-	module.last_replicated_at = last_replicated_at
+	module.last_replicated_at = os.clock()
 	for _,yeah in positions do
-		local player: Player, values = table.unpack(yeah)
+		local player: Player, values: { buffer } = table.unpack(yeah)
 		if player ~= local_player then
 			local character = characters.items[player]
 			if character then
-				local last_cframes = character.last_cframes
-				table.clear(last_cframes)
-
-				local cframes = character.cframes
-				table.move(cframes, 1, #cframes, 1, last_cframes)
-
-				character.cframes = values
+				local decompressed_values = {}
+				for index, cframe_buffer in values do
+					decompressed_values[index] = read_cframe_from_buffer(cframe_buffer, 0)
+				end
+				
+				character.cframes = decompressed_values
 			end
 		end
 	end

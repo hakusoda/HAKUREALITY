@@ -6,8 +6,6 @@ export type Character = {
 	humanoid: Humanoid?,
 	
 	cframes: {CFrame},
-	last_cframes: {CFrame},
-	
 	kinematics: { [string]: CharacterKinematic },
 
 	left_foot: Attachment?,

@@ -8,7 +8,6 @@ local kinematics = script.kinematics
 local active_event = root.active_event
 local cframe_replication = root.cframe_replication
 local server_debug_events = root.server_debug_events
-local server_debug_replication = root.server_debug_replication
 
 local constants = require(root.constants)
 local mark_instance = require(functions.mark_instance)
@@ -28,6 +27,15 @@ local players_with_debugger: { [Player]: boolean } = {}
 
 local all_kinematics = kinematics:GetChildren()
 local all_kinematics_length = #all_kinematics
+for _,kinematic in all_kinematics do
+	if kinematic:IsA("IKControl") then
+		local name = kinematic.Name
+		if name == "Head" or string.find(name, "Hand") then
+			kinematic.SmoothTime = REPLICATION_RATE
+		end
+	end
+end
+
 function setup_character(player: Player, model: Model)
 	local humanoid = assert(model:FindFirstChildWhichIsA("Humanoid"), `{model} is missing a Humanoid... 😥`)
 	
@@ -122,7 +130,7 @@ function handle_player(player: Player)
 end
 
 local active_vr_players: { [Player]: boolean } = {}
-local player_user_cframes: { [Player]: {CFrame} } = {}
+local player_user_cframes: { [Player]: { buffer } } = {}
 Players.PlayerRemoving:Connect(function(player)
 	active_vr_players[player],
 		player_user_cframes[player],
@@ -139,7 +147,7 @@ active_event.OnServerEvent:Connect(function(player)
 end)
 
 local last_replication_at = 0
-cframe_replication.OnServerEvent:Connect(function(player, user_cframes: { CFrame })
+cframe_replication.OnServerEvent:Connect(function(player, user_cframes: { buffer })
 	player_user_cframes[player] = user_cframes
 	
 	local current_time = os.clock()
@@ -148,16 +156,26 @@ cframe_replication.OnServerEvent:Connect(function(player, user_cframes: { CFrame
 
 		local replication_items = {}
 		for player, values in player_user_cframes do
+			if typeof(values) ~= "table" then
+				print("rejecting values")
+			end
+			for index, value in values do
+				if index < 1 or index > 4 or typeof(value) ~= "buffer" then
+					print(`rejecting values.{index}`)
+				end
+			end
 			table.insert(replication_items, { player, values :: any })
 		end
+		
+		table.clear(player_user_cframes)
 		cframe_replication:FireAllClients(replication_items)
 	end
 end)
 
-local user_creator_id = game.CreatorType == Enum.CreatorType.User and game.CreatorId or nil
+--local user_creator_id = game.CreatorType == Enum.CreatorType.User and game.CreatorId or nil
 server_debug_events.OnServerEvent:Connect(function(player, event: number)
 	if event == 0 then
-		local user_id = player.UserId
+		--local user_id = player.UserId
 		local has_debugger = players_with_debugger[player]
 		local condition = false--user_id == user_creator_id or user_id == 373020309
 		if condition then

@@ -80,7 +80,6 @@ function module.open()
 	
 	-- TODO: improve positioning, needs more complicated math instead of a lazy loop
 	local count = #items
-	local chunks = math.floor((count - 1) / 10) + 1
 
 	local done = 0
 	local depth = 1
