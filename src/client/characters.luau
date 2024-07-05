@@ -9,11 +9,11 @@ local functions = root.functions
 local local_player = Players.LocalPlayer :: Player
 local locally_created_event_threads: { thread } = {}
 
-local types = require(client.types)
+local cleanup_connections = require(functions.cleanup_connections)
+local cleanup_instances = require(functions.cleanup_instances)
 local constants = require(root.constants)
 local get_camera = require(functions.get_camera)
-local cleanup_instances = require(functions.cleanup_instances)
-local cleanup_connections = require(functions.cleanup_connections)
+local types = require(client.types)
 
 local module = {
 	items = {} :: { [Player]: types.Character }

@@ -2,16 +2,16 @@
 local Players = game:GetService("Players")
 
 local root = script.Parent
-local functions = root.functions
-local kinematics = script.kinematics
 local active_event = root.active_event
 local cframe_replication = root.cframe_replication
+local functions = root.functions
+local kinematics = script.kinematics
 local server_debug_events = root.server_debug_events
 
 local constants = require(root.constants)
-local mark_instance = require(functions.mark_instance)
 local cleanup_instances = require(functions.cleanup_instances)
 local create_chat_command = require(functions.create_chat_command)
+local mark_instance = require(functions.mark_instance)
 
 local REPLICATION_RATE = 1 / constants.REPLICATION_RATE
 function get_head_scale(model: Model): number

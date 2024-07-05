@@ -1,22 +1,25 @@
 --!strict
 local Players = game:GetService("Players")
-local VRService = game:GetService("VRService")
 local StarterGui = game:GetService("StarterGui")
 local TweenService = game:GetService("TweenService")
+local VRService = game:GetService("VRService")
 
 local functions = script.Parent.Parent.functions
-local vr_enabled = VRService.VREnabled
 local item_button = script.item_button
-local name_bubble = script.name_bubble
 local local_player = assert(Players.LocalPlayer)
 local local_player_gui = local_player.PlayerGui
+local name_bubble = script.name_bubble
 local selection_interface = script.selection_interface
+local vr_enabled = VRService.VREnabled
 
+local create_static_viewport_of_model = require(functions.create_static_viewport_of_model)
 local get_camera = require(functions.get_camera)
 local get_point_on_plane = require(functions.get_point_on_plane)
-local create_static_viewport_of_model = require(functions.create_static_viewport_of_model)
 
 local backpack_gui: {
+	cursor: ImageLabel,
+	cursor_inner: ImageLabel,
+	
 	gui: SurfaceGui,
 	part: Part,
 	items: {{
@@ -33,8 +36,6 @@ local backpack_gui: {
 			instance: Part
 		}?
 	}},
-	cursor: ImageLabel,
-	cursor_inner: ImageLabel,
 	
 	name_bubble: ImageLabel & {
 		text: TextLabel,
@@ -49,8 +50,8 @@ local backpack_gui: {
 }?
 
 local module = {
-	is_open = false,
-	current_gui = backpack_gui
+	current_gui = backpack_gui,
+	is_open = false
 }
 
 function create_item_hover_interface()

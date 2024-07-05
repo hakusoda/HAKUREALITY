@@ -4,19 +4,20 @@ local RunService = game:GetService("RunService")
 
 local client = script.Parent
 local root = client.Parent
-local functions = root.functions
-local cframe_replication = root.cframe_replication
 
-local constants = require(root.constants)
+local cframe_replication = root.cframe_replication
+local functions = root.functions
+
 local characters = require(client.characters)
-local cleanup_instances = require(functions.cleanup_instances)
 local cleanup_connections = require(functions.cleanup_connections)
+local cleanup_instances = require(functions.cleanup_instances)
+local constants = require(root.constants)
 local read_cframe_from_buffer = require(functions.read_cframe_from_buffer)
 
 local average_decompression_time: { number } = table.create(10)
 local module = {
-	last_replicated_at = 0,
-	average_decompression_time = average_decompression_time
+	average_decompression_time = average_decompression_time,
+	last_replicated_at = 0
 }
 
 local local_player = Players.LocalPlayer

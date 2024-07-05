@@ -1,31 +1,32 @@
 --!strict
-local Terrain = assert(workspace.Terrain)
-local Players = game:GetService("Players")
 local Lighting = game:GetService("Lighting")
-local VRService = game:GetService("VRService")
+local Players = game:GetService("Players")
+local Terrain = assert(workspace.Terrain)
 local RunService = game:GetService("RunService")
 local StarterGui = game:GetService("StarterGui")
 local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
+local VRService = game:GetService("VRService")
 
 local client = script.Parent
 local root = client.Parent
-local effects = root.effects
-local functions = root.functions
+
 local active_event = root.active_event
 local cframe_replication = root.cframe_replication
+local effects = root.effects
+local functions = root.functions
 
-local types = require(client.types)
-local constants = require(root.constants)
 local characters = require(client.characters)
-local get_camera = require(functions.get_camera)
-local show_notification = require(functions.show_notification)
-local get_cframe_y_angle = require(functions.get_cframe_y_angle)
+local constants = require(root.constants)
 local create_instance_group = require(functions.create_instance_group)
-local write_cframe_to_buffer = require(functions.write_cframe_to_buffer)
-local get_camera_subject_part = require(functions.get_camera_subject_part)
-local generate_void_wireframe = require(functions.generate_void_wireframe)
 local experimental_physical_backpack = require(client.experimental_physical_backpack)
+local generate_void_wireframe = require(functions.generate_void_wireframe)
+local get_camera = require(functions.get_camera)
+local get_camera_subject_part = require(functions.get_camera_subject_part)
+local get_cframe_y_angle = require(functions.get_cframe_y_angle)
+local show_notification = require(functions.show_notification)
+local types = require(client.types)
+local write_cframe_to_buffer = require(functions.write_cframe_to_buffer)
 
 local average_compression_time: { number } = table.create(10)
 local module = {

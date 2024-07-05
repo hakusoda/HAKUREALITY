@@ -3,10 +3,10 @@ local root = script.Parent
 local functions = root.functions
 local server_debug_events = root.server_debug_events
 
+local attach_chat_command_callback = require(functions.attach_chat_command_callback)
 local constants = require(root.constants)
 local debug_gui = require(script.debug_gui)
 local show_notification = require(functions.show_notification)
-local attach_chat_command_callback = require(functions.attach_chat_command_callback)
 
 local package = constants.PACKAGE
 require(script.local_handler)

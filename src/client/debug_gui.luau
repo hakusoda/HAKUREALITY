@@ -1,22 +1,22 @@
 --!strict
 local Players = game:GetService("Players")
-local VRService = game:GetService("VRService")
 local RunService = game:GetService("RunService")
+local VRService = game:GetService("VRService")
 
 local client = script.Parent
 local root = client.Parent
 local functions = root.functions
 
-local Iris = require(client.iris_instance)
-local types = require(client.types)
-local constants = require(root.constants)
 local characters = require(client.characters)
+local constants = require(root.constants)
+local create_fps_counter = require(functions.create_fps_counter)
 local display_time = require(functions.display_time)
+local experimental_physical_backpack = require(client.experimental_physical_backpack)
+local get_table_value_count = require(functions.get_table_value_count)
+local Iris = require(client.iris_instance)
 local local_handler = require(client.local_handler)
 local player_handler = require(client.player_handler)
-local create_fps_counter = require(functions.create_fps_counter)
-local get_table_value_count = require(functions.get_table_value_count)
-local experimental_physical_backpack = require(client.experimental_physical_backpack)
+local types = require(client.types)
 
 local user_cframes = Enum.UserCFrame:GetEnumItems()
 local render_counter = create_fps_counter(RunService.PreRender)
