@@ -1,0 +1,5 @@
+name: void_undefined
+class: Model
+properties:
+  LevelOfDetail: Disabled
+  ModelStreamingMode: Persistent

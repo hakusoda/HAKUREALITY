@@ -1,0 +1,36 @@
+name: left
+class: ImageLabel
+properties:
+  AnchorPoint: !Vector2
+    x: 0.0
+    y: 1.0
+  BackgroundColor3: !Color3
+    red: 255
+    green: 255
+    blue: 255
+  BackgroundTransparency: 1.0
+  BorderColor3: !Color3
+    red: 0
+    green: 0
+    blue: 0
+  BorderSizePixel: 0
+  Image: rbxassetid://16794895464
+  ImageRectOffset: !Vector2
+    x: 63.0
+    y: 64.0
+  ImageRectSize: !Vector2
+    x: 1.0
+    y: 64.0
+  Position: !UDim2
+  - scale: 0.0
+    offset: 16
+  - scale: 1.0
+    offset: -4
+  ResampleMode: Pixelated
+  Size: !UDim2
+  - scale: 0.5
+    offset: -20
+  - scale: 0.0
+    offset: 16
+  SliceCenter: 63, 46, 119, 144
+  ZIndex: 10

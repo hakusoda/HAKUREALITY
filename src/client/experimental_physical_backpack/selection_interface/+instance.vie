@@ -1,4 +1,4 @@
-name: toolGui
+name: selection_interface
 class: Part
 properties:
   Anchored: true

@@ -1,0 +1,6 @@
+name: UICorner
+class: UICorner
+properties:
+  CornerRadius: !UDim
+    scale: 0.5
+    offset: 0

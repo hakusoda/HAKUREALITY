@@ -127,6 +127,7 @@ function module.create(player: Player, model: Model): types.Character?
 					end
 				elseif child:IsA("IKControl") then
 					if player_is_self then
+						child.Enabled = true
 						child.SmoothTime = 0
 					end
 					

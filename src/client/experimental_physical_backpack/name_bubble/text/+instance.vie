@@ -1,0 +1,33 @@
+name: text
+class: TextLabel
+properties:
+  AnchorPoint: !Vector2
+    x: 0.0
+    y: 0.5
+  AutomaticSize: XY
+  BackgroundColor3: !Color3
+    red: 255
+    green: 255
+    blue: 255
+  BackgroundTransparency: 1.0
+  BorderColor3: !Color3
+    red: 0
+    green: 0
+    blue: 0
+  BorderSizePixel: 0
+  FontFace: !Font
+    style: Normal
+    family: rbxassetid://16658221428
+    weight: Medium
+  Position: !UDim2
+  - scale: 0.0
+    offset: 0
+  - scale: 0.0
+    offset: 16
+  Text: i am so burgers
+  TextColor3: !Color3
+    red: 255
+    green: 255
+    blue: 255
+  TextSize: 14.0
+  ZIndex: 11

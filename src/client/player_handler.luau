@@ -13,7 +13,11 @@ local cleanup_instances = require(functions.cleanup_instances)
 local cleanup_connections = require(functions.cleanup_connections)
 local read_cframe_from_buffer = require(functions.read_cframe_from_buffer)
 
-local module = { last_replicated_at = 0 }
+local average_decompression_time: { number } = table.create(10)
+local module = {
+	last_replicated_at = 0,
+	average_decompression_time = average_decompression_time
+}
 
 local local_player = Players.LocalPlayer
 RunService.PreAnimation:Connect(function()
@@ -66,12 +70,19 @@ cframe_replication.OnClientEvent:Connect(function(positions: {{any}})
 		if player ~= local_player then
 			local character = characters.items[player]
 			if character then
+				local start_time = os.clock()
+				
 				local decompressed_values = {}
 				for index, cframe_buffer in values do
 					decompressed_values[index] = read_cframe_from_buffer(cframe_buffer, 0)
 				end
 				
 				character.cframes = decompressed_values
+				
+				table.insert(average_decompression_time, os.clock() - start_time)
+				if #average_decompression_time > 10 then
+					table.remove(average_decompression_time, 1)
+				end
 			end
 		end
 	end

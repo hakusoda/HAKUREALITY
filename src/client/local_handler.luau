@@ -23,9 +23,11 @@ local show_notification = require(functions.show_notification)
 local get_cframe_y_angle = require(functions.get_cframe_y_angle)
 local create_instance_group = require(functions.create_instance_group)
 local write_cframe_to_buffer = require(functions.write_cframe_to_buffer)
+local get_camera_subject_part = require(functions.get_camera_subject_part)
 local generate_void_wireframe = require(functions.generate_void_wireframe)
 local experimental_physical_backpack = require(client.experimental_physical_backpack)
 
+local average_compression_time: { number } = table.create(10)
 local module = {
 	active = VRService.VREnabled,
 	local_rotation = 0,
@@ -34,7 +36,8 @@ local module = {
 	head_rotation_offset = 0,
 	head_rotation_offset_target = 0,
 	has_a_user_cframe_changed = false,
-	photo_sensitivity_warning_active = false
+	photo_sensitivity_warning_active = false,
+	average_compression_time = average_compression_time
 }
 
 local local_player = assert(Players.LocalPlayer)
@@ -52,16 +55,21 @@ end
 if module.active then
 	-- tell the server we're in virtual reality
 	active_event:FireServer()
+	task.defer(function()
+		for i = 1, 3 do
+			show_notification("in response to a critical bug, your limb movement will temporarily not show for others")
+		end
+	end)
 	
 	task.defer(function()
-		-- surely there's a better way of doing this...
 		local character = characters.wait_for_local_character()
 		
 		local blackspace_cframe = CFrame.new(0, 1000, 0)
-		local warning_group, void_lighting, void_wireframe, void_interface = create_instance_group(
+		local warning_group, void_lighting, void_wireframe, void_interface, void_undefined = create_instance_group(
 			effects.void_lighting,
 			effects.void_wireframe,
-			effects.void_interface
+			effects.void_interface,
+			effects.void_undefined
 		)
 
 		local comfort_ratings = {
@@ -119,14 +127,15 @@ if module.active then
 				end)
 				task.delay(info.Time, function()
 					warning_group.destroy_all()
-					void_lighting, void_wireframe, void_interface = nil
+					void_lighting, void_wireframe, void_interface, void_undefined = nil
 				end)
 			end)
 
 			void_interface.Parent = Terrain
+			void_undefined.Parent = Terrain
 		else
 			warning_group.destroy_all()
-			void_lighting, void_wireframe, void_interface = nil
+			void_lighting, void_wireframe, void_interface, void_undefined = nil
 		end
 
 		local local_rotation = 0
@@ -203,10 +212,10 @@ if module.active then
 		end)
 
 		local function handle_user_input(input: InputObject, game_processed: boolean)
-			if not game_processed and (input.KeyCode == Enum.KeyCode.ButtonR3 or input.KeyCode == Enum.KeyCode.Minus) then
+			if not photo_sensitivity_warning_active and not game_processed and (input.KeyCode == Enum.KeyCode.ButtonR3 or input.KeyCode == Enum.KeyCode.Minus) then
 				if input.UserInputState == Enum.UserInputState.Begin then
 					experimental_physical_backpack.open()
-				elseif experimental_physical_backpack.is_open then
+				elseif experimental_physical_backpack.is_open and not (input.KeyCode == Enum.KeyCode.Minus) then
 					experimental_physical_backpack.close()
 				end
 			end
@@ -229,9 +238,9 @@ if module.active then
 					character_root_part.Anchored = true
 				end
 			else
-				local subject = camera.CameraSubject
-				if subject then
-					local subject_root_part = subject:IsA("Humanoid") and subject.RootPart or subject.Parent.PrimaryPart
+				local camera_subject = camera.CameraSubject
+				if camera_subject then
+					local subject_root_part = get_camera_subject_part(camera_subject)
 					if subject_root_part then
 						local delta_time_doubled = delta_time * 2
 						if local_rotation_turning_offset ~= local_rotation_turning_offset_target then
@@ -271,15 +280,20 @@ if module.active then
 					end
 				end
 
-				experimental_physical_backpack.render()
+				experimental_physical_backpack.render(delta_time)
 			end
 
+			local camera_position = CFrame.new(camera.CFrame.Position)
 			if void_interface then
-				void_interface:PivotTo(CFrame.new(camera.CFrame.Position) - Vector3.zAxis * 24)
+				void_interface:PivotTo(camera_position - Vector3.zAxis * 24)
 			end
 
 			if void_wireframe then
-				void_wireframe:PivotTo(CFrame.new(camera.CFrame.Position))
+				void_wireframe:PivotTo(camera_position)
+			end
+			
+			if void_undefined then
+				void_undefined:PivotTo(camera_position + Vector3.zAxis * 64)
 			end
 		end)
 
@@ -291,6 +305,7 @@ if module.active then
 				if not character.is_dead and has_a_user_cframe_changed and #Players:GetPlayers() > 1 then
 					has_a_user_cframe_changed, module.has_a_user_cframe_changed = false, false
 					
+					local start_time = os.clock()
 					local kinematics = character.kinematics
 
 					local positions: { buffer } = table.create(4)
@@ -304,6 +319,11 @@ if module.active then
 					end
 
 					cframe_replication:FireServer(positions)
+					
+					table.insert(average_compression_time, os.clock() - start_time)
+					if #average_compression_time > 10 then
+						table.remove(average_compression_time, 1)
+					end
 				end
 			end
 		end)

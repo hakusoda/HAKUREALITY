@@ -1,0 +1,9 @@
+name: UIPadding
+class: UIPadding
+properties:
+  PaddingLeft: !UDim
+    scale: 0.0
+    offset: 16
+  PaddingRight: !UDim
+    scale: 0.0
+    offset: 16

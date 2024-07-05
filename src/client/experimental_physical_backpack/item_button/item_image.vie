@@ -1,0 +1,29 @@
+name: item_image
+class: ImageLabel
+properties:
+  AnchorPoint: !Vector2
+    x: 0.5
+    y: 0.5
+  BackgroundColor3: !Color3
+    red: 255
+    green: 255
+    blue: 255
+  BackgroundTransparency: 1.0
+  BorderColor3: !Color3
+    red: 0
+    green: 0
+    blue: 0
+  BorderSizePixel: 0
+  Image: rbxassetid://10472127
+  ImageTransparency: 1.0
+  Position: !UDim2
+  - scale: 0.5
+    offset: 0
+  - scale: 0.5
+    offset: 0
+  Size: !UDim2
+  - scale: 0.0
+    offset: 48
+  - scale: 0.0
+    offset: 48
+  ZIndex: 4

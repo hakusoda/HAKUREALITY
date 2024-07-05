@@ -57,7 +57,7 @@ function setup_character(player: Player, model: Model)
 			
 			local clone = child:Clone()
 			clone.Target = target
-			clone.Enabled = not player:GetAttribute(constants.DISABLE_IK_ATTRIBUTE)
+			clone.Enabled = false--not player:GetAttribute(constants.DISABLE_IK_ATTRIBUTE)
 			clone.ChainRoot = model:FindFirstChild(clone:GetAttribute("start"))
 			clone.EndEffector = model:FindFirstChild(clone.Name)
 			
@@ -120,7 +120,7 @@ function handle_player(player: Player)
 			if humanoid then
 				for _,child in humanoid:GetChildren() do
 					if child:IsA("IKControl") then
-						child.Enabled = not player:GetAttribute(constants.DISABLE_IK_ATTRIBUTE)
+						child.Enabled = false--not player:GetAttribute(constants.DISABLE_IK_ATTRIBUTE)
 					end
 				end
 			end

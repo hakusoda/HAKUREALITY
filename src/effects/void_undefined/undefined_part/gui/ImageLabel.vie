@@ -1,0 +1,22 @@
+name: ImageLabel
+class: ImageLabel
+properties:
+  BackgroundColor3: !Color3
+    red: 255
+    green: 255
+    blue: 255
+  BackgroundTransparency: 1.0
+  BorderColor3: !Color3
+    red: 0
+    green: 0
+    blue: 0
+  BorderSizePixel: 0
+  Image: rbxassetid://13928936949
+  ImageTransparency: 0.9
+  ResampleMode: Pixelated
+  ScaleType: Fit
+  Size: !UDim2
+  - scale: 1.0
+    offset: 0
+  - scale: 1.0
+    offset: 0

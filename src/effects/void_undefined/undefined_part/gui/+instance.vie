@@ -1,0 +1,11 @@
+name: gui
+class: SurfaceGui
+properties:
+  AlwaysOnTop: true
+  Face: Back
+  MaxDistance: 100000.0
+  PixelsPerStud: 128.0
+  ResetOnSpawn: false
+  SizingMode: PixelsPerStud
+  ZIndexBehavior: Sibling
+  ZOffset: 1.0

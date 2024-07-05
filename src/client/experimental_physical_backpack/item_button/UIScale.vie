@@ -1,0 +1,4 @@
+name: UIScale
+class: UIScale
+properties:
+  Scale: 0.5
