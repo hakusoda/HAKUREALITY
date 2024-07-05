@@ -8,12 +8,13 @@ local functions = root.functions
 local kinematics = script.kinematics
 local server_debug_events = root.server_debug_events
 
+local config = require(root.config)
 local constants = require(root.constants)
 local cleanup_instances = require(functions.cleanup_instances)
 local create_chat_command = require(functions.create_chat_command)
 local mark_instance = require(functions.mark_instance)
 
-local REPLICATION_RATE = 1 / constants.REPLICATION_RATE
+local REPLICATION_RATE = 1 / config.REPLICATION_RATE
 function get_head_scale(model: Model): number
 	local scale = model:FindFirstChild("HeadScale", true)
 	if scale and scale:IsA("NumberValue") then

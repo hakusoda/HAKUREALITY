@@ -17,6 +17,7 @@ local effects = root.effects
 local functions = root.functions
 
 local characters = require(client.characters)
+local config = require(root.config)
 local constants = require(root.constants)
 local create_instance_group = require(functions.create_instance_group)
 local experimental_physical_backpack = require(client.experimental_physical_backpack)
@@ -73,14 +74,7 @@ if module.active then
 			effects.void_undefined
 		)
 
-		local comfort_ratings = {
-			[-1] = "Unrated",
-			[0] = "Comfortable",
-			[1] = "Moderate",
-			[2] = "Intense"
-		}
-
-		local photo_sensitivity_warning_active = constants.SHOW_PHOTOSENSITIVITY_WARNING
+		local photo_sensitivity_warning_active = config.SHOW_PHOTOSENSITIVITY_WARNING
 		module.photo_sensitivity_warning_active = photo_sensitivity_warning_active
 		
 		if photo_sensitivity_warning_active then
@@ -92,7 +86,7 @@ if module.active then
 			void_wireframe.Parent = Terrain
 
 			local void_gui = void_interface.interface_part.gui
-			void_gui.info.comfort.Text = `Comfort: {comfort_ratings[root:GetAttribute("comfortRating") or -1]}`
+			void_gui.info.comfort.Text = `Comfort: {constants.COMFORT_RATINGS[root:GetAttribute("comfortRating") or -1]}`
 			void_gui.version.Text = `HAKUREALITY — Version {system_version}`
 			void_gui.Parent = local_player.PlayerGui
 
@@ -301,7 +295,7 @@ if module.active then
 		local user_cframe_enum_items = Enum.UserCFrame:GetEnumItems()
 		task.defer(function()
 			-- TODO: improve
-			local REPLICATION_RATE = 1 / constants.REPLICATION_RATE
+			local REPLICATION_RATE = 1 / config.REPLICATION_RATE
 			while task.wait(REPLICATION_RATE) do
 				if not character.is_dead and has_a_user_cframe_changed and #Players:GetPlayers() > 1 then
 					has_a_user_cframe_changed, module.has_a_user_cframe_changed = false, false
