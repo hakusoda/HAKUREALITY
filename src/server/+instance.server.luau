@@ -58,7 +58,7 @@ function setup_character(player: Player, model: Model)
 			
 			local clone = child:Clone()
 			clone.Target = target
-			clone.Enabled = false--not player:GetAttribute(constants.DISABLE_IK_ATTRIBUTE)
+			clone.Enabled = not player:GetAttribute(constants.DISABLE_IK_ATTRIBUTE)
 			clone.ChainRoot = model:FindFirstChild(clone:GetAttribute("start"))
 			clone.EndEffector = model:FindFirstChild(clone.Name)
 			
@@ -121,7 +121,7 @@ function handle_player(player: Player)
 			if humanoid then
 				for _,child in humanoid:GetChildren() do
 					if child:IsA("IKControl") then
-						child.Enabled = false--not player:GetAttribute(constants.DISABLE_IK_ATTRIBUTE)
+						child.Enabled = not player:GetAttribute(constants.DISABLE_IK_ATTRIBUTE)
 					end
 				end
 			end
@@ -157,11 +157,11 @@ cframe_replication.OnServerEvent:Connect(function(player, user_cframes: { buffer
 		local replication_items = {}
 		for player, values in player_user_cframes do
 			if typeof(values) ~= "table" then
-				print("rejecting values")
+				break
 			end
 			for index, value in values do
 				if index < 1 or index > 4 or typeof(value) ~= "buffer" then
-					print(`rejecting values.{index}`)
+					break
 				end
 			end
 			table.insert(replication_items, { player, values :: any })
