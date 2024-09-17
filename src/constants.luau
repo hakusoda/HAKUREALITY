@@ -14,5 +14,5 @@ return table.freeze({
 	
 	SETUP_ATTRIBUTE = "HAKUREALITY_SETUP",
 	
-	VERSION = "0.1.1",
+	VERSION = "0.1.2",
 })
